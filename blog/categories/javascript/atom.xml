@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: JavaScript | Shridhar Deshmukh]]></title>
+  <link href="http://Shridhad.github.io/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://Shridhad.github.io/"/>
+  <updated>2014-02-15T21:02:26+05:30</updated>
+  <id>http://Shridhad.github.io/</id>
+  <author>
+    <name><![CDATA[Shridhar Deshmukh]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[jJsonViewer - jQuery Plugin]]></title>
+    <link href="http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin/"/>
+    <updated>2014-02-15T18:40:08+05:30</updated>
+    <id>http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin</id>
+    <content type="html"><![CDATA[<p><link rel="stylesheet" href="http://shridhad.github.io/jjsonviewer/css/jjsonviewer.css">
+<a href="https://github.com/Shridhad/jjsonviewer">View on Github</a></p>
+
+<p><code>jJsonViewer</code> is a jquery plugin which you can all on any jquery element. This function takes <code>JSON</code> or <code>stringified JSON</code> as input which will be converted into html and added into given element.</p>
+
+<h2>How to use &ndash;</h2>
+
+<ul>
+<li>Just download jJsonViewer plugin. You only need javascript and stylesheet.</li>
+<li>Include both in your html page.</li>
+<li>Now call jJsonViewer on any element and pass it json data$(element).jJsonViewer(json)</li>
+</ul>
+
+
+<h3>Demo &ndash;</h3>
+
+<p>``` javascript</p>
+
+<pre><code>var jjson = '{
+    "name": "jJsonViewer",
+    "author": {
+        "name": "Shridhar Deshmukh",
+        "email": "shridhar.deshmukh3@gmail.com",
+        "contact": [
+            {
+                "location": "office",
+                "number": 123456
+            },
+            {
+                "location": "home",
+                "number": 987654
+            }
+        ]
+    }
+}';
+
+$("#jjson").jJsonViewer(jjson);
+</code></pre>
+
+<p>```</p>
+
+<p><em>Output-</em></p>
+
+<p>Enjoy collapsing and expanding over each JSON object and array. :)</p>
+
+<div id="jjson"></div>
+
+
+
+
+<script type="text/javascript" src="http://shridhad.github.io/jjsonviewer/js/jjsonviewer.js"></script>
+
+
+<script type="text/javascript">
+        $(document).ready(function() {
+            var jjson = '{ "name": "jJsonViewer","author": { "name": "Shridhar Deshmukh", "email": "shridhar.deshmukh3@gmail.com", "contact": [{"location": "office", "number": 123456}, {"location": "home", "number": 987654}] } }';
+
+            $("#jjson").jJsonViewer(jjson);
+        });
+</script>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Stop Repeating event.preventDefault()]]></title>
+    <link href="http://Shridhad.github.io/blog/2014/01/12/stop-repeating-event-dot-preventdefault/"/>
+    <updated>2014-01-12T10:29:02+05:30</updated>
+    <id>http://Shridhad.github.io/blog/2014/01/12/stop-repeating-event-dot-preventdefault</id>
+    <content type="html"><![CDATA[<p>If you end up repeating <code>event.preventDefault();</code>  in all/most of your event handlers, then you can stop yourself by using decorator over your actual event handlers.</p>
+
+<p>Here is an example &ndash;</p>
+
+<p>```javascript</p>
+
+<pre><code>$(document).ready(function() {
+    function defaultPreventer(handler) {
+        return function(event) {
+            event.preventDefault();
+            handler.apply(this, arguments);
+        }
+    };
+    function clickHandler(event) {
+        //..do something
+    };
+    $("#link").on("click", defaultPreventer(clickHandler));
+});
+</code></pre>
+
+<p>```</p>
+
+<p>What <code>defaultPreventer</code> does here is, it returns the a decorator function for your actual event handler function <code>clickHandler</code>. Whenever the event is triggered, this decorator function gets called, and it executes <code>event.preventDefault();</code> before executing actual event handler <code>clickHandler</code>.</p>
+
+<p>Here is working example on <a href="http://jsfiddle.net/shree33/PNRs3/">JsFiddle</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

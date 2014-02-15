@@ -4,7 +4,7 @@
   <title><![CDATA[Shridhar Deshmukh]]></title>
   <link href="http://Shridhad.github.io/atom.xml" rel="self"/>
   <link href="http://Shridhad.github.io/"/>
-  <updated>2014-02-15T18:25:14+05:30</updated>
+  <updated>2014-02-15T21:02:26+05:30</updated>
   <id>http://Shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
@@ -12,5 +12,132 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[jJsonViewer - jQuery Plugin]]></title>
+    <link href="http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin/"/>
+    <updated>2014-02-15T18:40:08+05:30</updated>
+    <id>http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin</id>
+    <content type="html"><![CDATA[<p><link rel="stylesheet" href="http://shridhad.github.io/jjsonviewer/css/jjsonviewer.css">
+<a href="https://github.com/Shridhad/jjsonviewer">View on Github</a></p>
+
+<p><code>jJsonViewer</code> is a jquery plugin which you can all on any jquery element. This function takes <code>JSON</code> or <code>stringified JSON</code> as input which will be converted into html and added into given element.</p>
+
+<h2>How to use &ndash;</h2>
+
+<ul>
+<li>Just download jJsonViewer plugin. You only need javascript and stylesheet.</li>
+<li>Include both in your html page.</li>
+<li>Now call jJsonViewer on any element and pass it json data$(element).jJsonViewer(json)</li>
+</ul>
+
+
+<h3>Demo &ndash;</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="kd">var</span> <span class="nx">jjson</span> <span class="o">=</span> <span class="s1">&#39;{</span>
+</span><span class='line'><span class="s1">        &quot;name&quot;: &quot;jJsonViewer&quot;,</span>
+</span><span class='line'><span class="s1">        &quot;author&quot;: {</span>
+</span><span class='line'><span class="s1">            &quot;name&quot;: &quot;Shridhar Deshmukh&quot;,</span>
+</span><span class='line'><span class="s1">            &quot;email&quot;: &quot;shridhar.deshmukh3@gmail.com&quot;,</span>
+</span><span class='line'><span class="s1">            &quot;contact&quot;: [</span>
+</span><span class='line'><span class="s1">                {</span>
+</span><span class='line'><span class="s1">                    &quot;location&quot;: &quot;office&quot;,</span>
+</span><span class='line'><span class="s1">                    &quot;number&quot;: 123456</span>
+</span><span class='line'><span class="s1">                },</span>
+</span><span class='line'><span class="s1">                {</span>
+</span><span class='line'><span class="s1">                    &quot;location&quot;: &quot;home&quot;,</span>
+</span><span class='line'><span class="s1">                    &quot;number&quot;: 987654</span>
+</span><span class='line'><span class="s1">                }</span>
+</span><span class='line'><span class="s1">            ]</span>
+</span><span class='line'><span class="s1">        }</span>
+</span><span class='line'><span class="s1">    }&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#jjson&quot;</span><span class="p">).</span><span class="nx">jJsonViewer</span><span class="p">(</span><span class="nx">jjson</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>Output-</em></p>
+
+<p>Enjoy collapsing and expanding over each JSON object and array. :)</p>
+
+<div id="jjson"></div>
+
+
+
+
+<script type="text/javascript" src="http://shridhad.github.io/jjsonviewer/js/jjsonviewer.js"></script>
+
+
+<script type="text/javascript">
+        $(document).ready(function() {
+            var jjson = '{ "name": "jJsonViewer","author": { "name": "Shridhar Deshmukh", "email": "shridhar.deshmukh3@gmail.com", "contact": [{"location": "office", "number": 123456}, {"location": "home", "number": 987654}] } }';
+
+            $("#jjson").jJsonViewer(jjson);
+        });
+</script>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Stop Repeating event.preventDefault()]]></title>
+    <link href="http://Shridhad.github.io/blog/2014/01/12/stop-repeating-event-dot-preventdefault/"/>
+    <updated>2014-01-12T10:29:02+05:30</updated>
+    <id>http://Shridhad.github.io/blog/2014/01/12/stop-repeating-event-dot-preventdefault</id>
+    <content type="html"><![CDATA[<p>If you end up repeating <code>event.preventDefault();</code>  in all/most of your event handlers, then you can stop yourself by using decorator over your actual event handlers.</p>
+
+<p>Here is an example &ndash;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">function</span> <span class="nx">defaultPreventer</span><span class="p">(</span><span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+</span><span class='line'>                <span class="nx">handler</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">};</span>
+</span><span class='line'>        <span class="kd">function</span> <span class="nx">clickHandler</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="c1">//..do something</span>
+</span><span class='line'>        <span class="p">};</span>
+</span><span class='line'>        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#link&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="nx">defaultPreventer</span><span class="p">(</span><span class="nx">clickHandler</span><span class="p">));</span>
+</span><span class='line'>    <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What <code>defaultPreventer</code> does here is, it returns the a decorator function for your actual event handler function <code>clickHandler</code>. Whenever the event is triggered, this decorator function gets called, and it executes <code>event.preventDefault();</code> before executing actual event handler <code>clickHandler</code>.</p>
+
+<p>Here is working example on <a href="http://jsfiddle.net/shree33/PNRs3/">JsFiddle</a>.</p>
+]]></content>
+  </entry>
   
 </feed>
