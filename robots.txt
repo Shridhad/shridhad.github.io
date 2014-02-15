@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://Shridhad.github.io/sitemap.xml 
+Sitemap: http://shridhad.github.io/sitemap.xml 
