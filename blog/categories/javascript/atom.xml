@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript | Shridhar Deshmukh]]></title>
   <link href="http://Shridhad.github.io/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://Shridhad.github.io/"/>
-  <updated>2014-06-06T21:38:20+05:30</updated>
+  <updated>2014-06-27T21:38:26+05:30</updated>
   <id>http://Shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
@@ -12,6 +12,238 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[What Is `this`?]]></title>
+    <link href="http://Shridhad.github.io/blog/2014/06/27/what-is-this/"/>
+    <updated>2014-06-27T08:27:26+05:30</updated>
+    <id>http://Shridhad.github.io/blog/2014/06/27/what-is-this</id>
+    <content type="html"><![CDATA[<p>The most powerful keyword in JavaScript is <code>this</code> and many people get tripped by it. People expect it to work like <code>this</code> in Java, but understand that JavaScript is not Java.
+Unfortunately understanding behavior of <code>this</code> is little harder if you are new to JavaScript, but certainly its not a magic. And as you start getting to used to <code>this</code>, its rule are actually very simple.</p>
+
+<!-- more -->
+
+
+<p><blockquote><p>The &lsquo;this&rsquo; keyword evaluates to the value of the &lsquo;ThisBinding&rsquo; of the current execution context.</p><footer><strong>11.1.1 The this keyword &ndash;  <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11.1.1">http://www.ecma-international.org/ecma-262/5.1/#sec-11.1.1</a> ECMAScript Language Specification</strong></footer></blockquote></p>
+
+<p>The <code>this</code> value depends on the caller and the type of code being executed and is determined when control enters the execution context. The <code>this</code> value associated with an execution context is immutable.
+And an execution context is a specification device that is used to track the runtime evaluation of code by an ECMAScript implementation. At any point in time, there is at most one execution context that is actually executing code.</p>
+
+<p class="no-margin">So lets understand how <code>this</code> works in following different contexts-</p>
+
+
+<ol>
+<li>Global Context</li>
+<li>Function Context</li>
+<li>Constructor Context</li>
+<li>A DOM Event Handler</li>
+</ol>
+
+
+<br />
+
+
+<h2>1. Global Context</h2>
+
+<p>All JavaScript runtimes have a unique object called the <code>global object</code>. In browsers, the global object is the <code>window</code> object. When the JavaScript interpreter initially executes code, it first enters into a global execution context by default and <code>this</code> refers to global object which is window.</p>
+
+<p>```javascript</p>
+
+<pre><code>var context = "global";
+
+console.log(" context -&gt;        " + context);          // context -&gt; global
+console.log(" window.context -&gt; " + window.context);   // window.context -&gt; global
+console.log(" this == window -&gt; " + (this===window));  // this == window -&gt; true
+</code></pre>
+
+<p>```</p>
+
+<h2>2. Function Context</h2>
+
+<p>Whenever you call a function the execution context changes and the new execution context depends on how you invoked the function.</p>
+
+<ul>
+<li>If you invoke the function using <code>Function.call()</code> or <code>Function.apply()</code>, <code>this</code> will be set to the first argument passed to <code>.call()/.apply()</code>.</li>
+</ul>
+
+
+<p>```javascript</p>
+
+<pre><code>var printContext = function() {
+  console.log("context -&gt; " + this);
+}
+
+printContext.call(window);    // context -&gt; [object Window]
+printContext.call("123");     // context -&gt; 123
+
+printContext.apply(window);   // context -&gt; [object Window]
+printContext.apply("123");    // context -&gt; 123
+
+//this line-
+printContext();               // context -&gt; [object Window]
+
+//desugars to this -
+printContext.call(window);    // context -&gt; [object Window]
+</code></pre>
+
+<p>```</p>
+
+<p>Wait, I didn&rsquo;t use <code>.call()</code> at <em>line 12</em> then how the context is <code>window</code>. Basically whenever you make bare function call i.e. without <code>.call()/.apply()</code> as above <em>printContext()</em>, JavaScript will convert the call statement to <em>printContext.call(null)</em>.
+If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> or <em>undefined</em>, <code>this</code> will refer to <code>window</code>. But the catch here is if you are in <code>strict mode</code> then the value of <code>this</code> will be whatever its set to while entering into execution context, if not defined it will remain undefined.</p>
+
+<ul>
+<li>If you create function using <code>Function.bind()</code>, <code>this</code> will be bound the first argument that was passed to <code>.bind()</code>. In this approach however you make call to the function doesn&rsquo;t change value of <code>this</code>. Calling <code>printContext.bind()</code> creates a new function with same body and scope, but <code>this</code> is permanently bound to first argument of <code>bind</code>.</li>
+</ul>
+
+
+<p>```javascript</p>
+
+<pre><code>var printContext = function() {
+  console.log("context -&gt; " + this);
+}
+
+var print = printContext.bind("bind");
+
+print();                // context -&gt; bind
+print.call(123);        // context -&gt; bind
+</code></pre>
+
+<p>```</p>
+
+<ul>
+<li>If you invoke the function as a method of an object, <code>this</code> will refer to that object. But you can still change it to some different object using <code>.call()/.apply()</code>.</li>
+</ul>
+
+
+<p>```javascript</p>
+
+<pre><code>var obj = {
+  name: "Object",
+  greet: function() {
+    console.log("Hello " + this.name);
+  }
+}
+
+obj.greet();                // Hello Object
+window.name = "window";
+obj.greet.call(window);     // Hello window
+
+//this line-
+obj.greet();                // Hello Object
+//desugars to this-
+obj.greet.call(obj);        // Hello Object
+</code></pre>
+
+<p>```</p>
+
+<h2>3. Constructor Context</h2>
+
+<p>When constructing a new object via <code>new</code> operator, JavaScript interpreter creates new empty object, set some properties on it and then call the constructor function on that new object. Thus, in this context the value <code>this</code> is the new object.</p>
+
+<p>```javascript</p>
+
+<pre><code>var NewObject = function() {
+  this.context = "NewObject";
+}
+
+var instance = new NewObject();
+console.log("context -&gt; " + instance.context);      // context -&gt; NewObject
+</code></pre>
+
+<p>```</p>
+
+<h2>4. A DOM Event Handler</h2>
+
+<p>Consider the following example, here the value of <code>this</code> in the function <code>handler</code> refers to the button you clicked on. You can observe the same in result tab.</p>
+
+<p data-height="268" data-theme-id="6499" data-slug-hash="jbkig" data-default-tab="js" class='codepen'>See the Pen <a href='http://codepen.io/shree33/pen/jbkig/'>this in DOM Event Handler</a> by Shridhar Deshmukh (<a href='http://codepen.io/shree33'>@shree33</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+
+<script async src="http://Shridhad.github.io//codepen.io/assets/embed/ei.js"></script>
+
+
+<p>When you click on the button, the <code>handler</code> is invoked as method of the button, so <code>this</code> refers to the target element. How that happens is here, when you say <code>$("button").click(handler)</code>, there will be a new copy of <code>handler</code> created and bound to the button using <code>.bind()</code>. This is done by <code>attachEvent/addEventLister</code> method.</p>
+
+<p>```javascript</p>
+
+<p>   //this is
+   $(&ldquo;button&rdquo;).click(handler);</p>
+
+<p>   //equivalent to
+   $(&ldquo;button&rdquo;).each(function() {</p>
+
+<pre><code> $(this).click(handler.bind(this);   // this here is particular button
+</code></pre>
+
+<p>   });</p>
+
+<p>```</p>
+
+<h2>Summary</h2>
+
+<p>That&rsquo;s it! If you understand and follow above rules, you will always know what <code>this</code> is.</p>
+
+<table class="this">
+  <thead>
+    <tr>
+      <td> Context </td>
+      <td> Non Strict mode </td>
+      <td> Strict mode </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> Global Context </td>
+      <td> window </td>
+      <td> window </td
+    </tr>
+    <tr>
+      <td> .call()/.apply() </td>
+      <td> First Argument / window </td>
+      <td> First Argument / undefined </td>
+    </tr>
+    <tr>
+      <td> .bind() </td>
+      <td> First Argument </td>
+      <td> First Argument </td>
+    </tr>
+    <tr>
+      <td> function() </td>
+      <td> window </td>
+      <td> undefined </td>
+    </tr>
+    <tr>
+      <td> object.function() </td>
+      <td> object </td>
+      <td> object </td>
+    </tr>
+    <tr>
+      <td> Constructor Context </td>
+      <td> New Object </td>
+      <td> New Object </td>
+    </tr>
+    <tr>
+      <td> DOM Event Handler </td>
+      <td> The HTML Element </td>
+      <td> The HTML Element </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>Codepens</h2>
+
+<ul>
+<li><a href="http://codepen.io/shree33/pen/bKeBE">Global Context</a></li>
+<li><a href="http://codepen.io/shree33/pen/ajcEC">this in call/apply</a></li>
+<li><a href="http://codepen.io/shree33/pen/bCeLA">this with bind</a></li>
+<li><a href="http://codepen.io/shree33/pen/lgDcu">this in object method</a></li>
+<li><a href="http://codepen.io/shree33/pen/AhEis">Constructor Context</a></li>
+<li><a href="http://codepen.io/shree33/pen/jbkig">A DOM Event Handler</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[jJsonViewer - jQuery Plugin]]></title>
@@ -22,6 +254,9 @@
 <a href="https://github.com/Shridhad/jjsonviewer">View on Github</a></p>
 
 <p><code>jJsonViewer</code> is a jquery plugin which you can all on any jquery element. This function takes <code>JSON</code> or <code>stringified JSON</code> as input which will be converted into html and added into given element.</p>
+
+<!-- more -->
+
 
 <h2>How to use &ndash;</h2>
 
@@ -88,6 +323,9 @@ $("#jjson").jJsonViewer(jjson);
     <updated>2014-01-12T10:29:02+05:30</updated>
     <id>http://Shridhad.github.io/blog/2014/01/12/stop-repeating-event-dot-preventdefault</id>
     <content type="html"><![CDATA[<p>If you end up repeating <code>event.preventDefault();</code>  in all/most of your event handlers, then you can stop yourself by using decorator over your actual event handlers.</p>
+
+<!-- more -->
+
 
 <p>Here is an example &ndash;</p>
 

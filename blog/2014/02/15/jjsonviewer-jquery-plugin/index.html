@@ -21,15 +21,16 @@
   <link rel="canonical" href="http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin">
   <link href="/images/shree.png" rel="shortcut icon" type="image/png">
   <link href="/images/shree.png" rel="icon" type="image/png">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/stackicons-social.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/style.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Shridhar Deshmukh" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300italic,400italic,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,500,300,600,700' rel='stylesheet' type='text/css'>
 
   
   <script type="text/javascript">
@@ -48,66 +49,71 @@
 </head>
 
 <body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Shridhar Deshmukh</a></h1>
-  
-    <h2>Web Developer @ThoughtWorks.</h2>
-  
-</hgroup>
-
+    <div class="page-wrapper">
+        <header class="main-header" role="banner"><div class="container">
+    <a class="logo" href="/" title="Shridhar Deshmukh"> Shridhar Deshmukh </a>
+    <nav role="main-menu" class="main-menu">
+        <div class="icon-menu text-center">
+            <a class="st-icon-menu-alt2 st-shape-icon"></a>
+        </div>
+        <ul class="main">
+            <li>
+                <a href="/"> Blog </a>
+            </li>
+            <li>
+                <a href="/blog/archives"> Archives </a>
+            </li>
+            <li class="about-me">
+                <a href="/aboutme">About me</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <nav role="about-menu" class="about-menu">
+        <ul class="about text-center st-multi-color st-shape-r5">
+            
+            <li>
+                <a class="st-icon-twitter" target="_blank" href="https://twitter.com/_shree33" title="Twitter"> Twitter </a>
+            </li>
+            
+            
+            <li>
+                <a class="st-icon-github-alt" target="_blank" href="https://github.com/shridhad" title="Github"> GitHub </a>
+            </li>
+            
+            
+            <li>
+                <a class="st-icon-codepen" target="_blank" href="https://codepen.io/shree33"> Codepen </a>
+            </li>
+            
+        </ul>
+    </nav>
+    
+</div>
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:Shridhad.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
+        <div class="container">
+            <div id="post">
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
-    
-      <h1 class="entry-title">jJsonViewer - jQuery Plugin</h1>
-    
-    
-      <p class="meta">
+<article>
+    <div class="title">
         
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-15T18:40:08+05:30" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time>
+            <h1>
+                
+                    jJsonViewer - jQuery Plugin
+                
+            </h1>
         
-      </p>
-    
-  </header>
+    </div>
 
-
-<div class="entry-content"><p><link rel="stylesheet" href="http://shridhad.github.io/jjsonviewer/css/jjsonviewer.css">
+    <div class="content">
+        
+            <div class="entry-content"><p><link rel="stylesheet" href="http://shridhad.github.io/jjsonviewer/css/jjsonviewer.css">
 <a href="https://github.com/Shridhad/jjsonviewer">View on Github</a></p>
 
 <p><code>jJsonViewer</code> is a jquery plugin which you can all on any jquery element. This function takes <code>JSON</code> or <code>stringified JSON</code> as input which will be converted into html and added into given element.</p>
+
+<!-- more -->
+
 
 <h2>How to use &ndash;</h2>
 
@@ -182,16 +188,10 @@
 </script>
 
 </div>
-
-
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">Shridhar Deshmukh</span></span>
-
-      
+        
+        
+            <p class="footer">
+                
 
 
 
@@ -204,38 +204,30 @@
 
 
 <time datetime="2014-02-15T18:40:08+05:30" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time>
-      
-
-<span class="categories">
+            </p>
+        
+        
+            <div class="sharing">
   
-    <a class='category' href='/blog/categories/javascript/'>JavaScript</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin/" data-via="_shree33" data-counturl="http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin/" data-via="_shree33">Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
   
   
+    <div class="fb-like" data-href="http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+  
 </div>
 
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2014/01/12/stop-repeating-event-dot-preventdefault/" title="Previous Post: Stop repeating event.preventDefault()">&laquo; Stop repeating event.preventDefault()</a>
-      
-      
-    </p>
-  </footer>
+        
+    </div>
+
 </article>
 
-  <section>
+
+
+
+  <section id="disqus">
     <h1>Comments</h1>
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
@@ -243,69 +235,39 @@
 
 </div>
 
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/02/15/jjsonviewer-jquery-plugin/">jJsonViewer - jQuery Plugin</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/12/stop-repeating-event-dot-preventdefault/">Stop Repeating event.preventDefault()</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/shridhad">@shridhad</a> on GitHub
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'shridhad',
-            count: 2,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-
-
-  
-</aside>
-
-
+        </div>
     </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Shridhar Deshmukh -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
+    <footer class="main-footer">
+    <div class="container fun">
+        <div class="column">
+            <div class="number">2</div>
+            <div class="description">Late nights this month</div>
+        </div>
+        <div class="column">
+            <div class="number">2</div>
+            <div class="description">Cans of Coke Max consumed within 24 hours</div>
+        </div>
+        <div class="column">
+            <div class="number">2</div>
+            <div class="description">Days off this year!</div>
+        </div>
+    </div>
+    <div class="about container">
+        <div class="column aboutsite">
+            <p>This site is personal portfolio of developer - Shridhar Deshmukh.</p>
+            <p>Showcasing UI and interactive work, as well as worthless nonsense.</p>
+        </div>
+        <div class="column"></div>
+        <div class="column copyright">
+            <p>Copyright &copy; 2014 - Shridhar Deshmukh </p>
+            <p>- <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span></p>
+        </div>
+    </div>
 </footer>
-  
+
+
+
+    
 
 <script type="text/javascript">
       var disqus_shortname = 'shridhad';
@@ -325,6 +287,15 @@
 
 
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 
 
   <script type="text/javascript">
@@ -337,15 +308,18 @@
 
 
 
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
+    <script>!function(d,s,id){
+        var js,
+            fjs=d.getElementsByTagName(s)[0],
+            p=/^http:/.test(d.location)?'http':'https';
+        if(!d.getElementById(id)){
+            js=d.createElement(s);
+            js.id=id;
+            js.src=p+'://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js,fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+    </script>
 
 
 
