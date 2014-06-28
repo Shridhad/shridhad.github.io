@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript | Shridhar Deshmukh]]></title>
   <link href="http://Shridhad.github.io/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://Shridhad.github.io/"/>
-  <updated>2014-06-27T22:28:58+05:30</updated>
+  <updated>2014-06-29T02:08:42+05:30</updated>
   <id>http://Shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
@@ -253,7 +253,7 @@ console.log("context -&gt; " + instance.context);      // context -&gt; NewObjec
     <content type="html"><![CDATA[<p><link rel="stylesheet" href="http://shridhad.github.io/jjsonviewer/css/jjsonviewer.css">
 <a href="https://github.com/Shridhad/jjsonviewer">View on Github</a></p>
 
-<p><code>jJsonViewer</code> is a jquery plugin which you can all on any jquery element. This function takes <code>JSON</code> or <code>stringified JSON</code> as input which will be converted into html and added into given element.</p>
+<p><code>jJsonViewer</code> is a jquery plugin which you can call on any jquery element. This function takes <code>JSON</code> or <code>stringified JSON</code> as input which will be converted into html and added into given element.</p>
 
 <!-- more -->
 
@@ -263,7 +263,7 @@ console.log("context -&gt; " + instance.context);      // context -&gt; NewObjec
 <ul>
 <li>Just download jJsonViewer plugin. You only need javascript and stylesheet.</li>
 <li>Include both in your html page.</li>
-<li>Now call jJsonViewer on any element and pass it json data$(element).jJsonViewer(json)</li>
+<li>Now call jJsonViewer on any element and pass it a json data <code>$(element).jJsonViewer(json)</code></li>
 </ul>
 
 
