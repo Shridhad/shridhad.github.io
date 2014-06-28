@@ -4,7 +4,7 @@
   <title><![CDATA[Shridhar Deshmukh]]></title>
   <link href="http://Shridhad.github.io/atom.xml" rel="self"/>
   <link href="http://Shridhad.github.io/"/>
-  <updated>2014-06-29T02:08:42+05:30</updated>
+  <updated>2014-06-29T02:53:39+05:30</updated>
   <id>http://Shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
@@ -234,7 +234,7 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
     <tr>
       <td> Global Context </td>
       <td> window </td>
-      <td> window </td
+      <td> window </td>
     </tr>
     <tr>
       <td> .call()/.apply() </td>
@@ -289,7 +289,7 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
     <link href="http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin/"/>
     <updated>2014-02-15T18:40:08+05:30</updated>
     <id>http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin</id>
-    <content type="html"><![CDATA[<p><link rel="stylesheet" href="http://shridhad.github.io/jjsonviewer/css/jjsonviewer.css">
+    <content type="html"><![CDATA[<p><link href="http://shridhad.github.io/jjsonviewer/css/jjsonviewer.css" rel="stylesheet" type="text/css">
 <a href="https://github.com/Shridhad/jjsonviewer">View on Github</a></p>
 
 <p><code>jJsonViewer</code> is a jquery plugin which you can call on any jquery element. This function takes <code>JSON</code> or <code>stringified JSON</code> as input which will be converted into html and added into given element.</p>
