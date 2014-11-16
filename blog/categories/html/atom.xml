@@ -4,7 +4,7 @@
   <title><![CDATA[Category: HTML | Shridhar Deshmukh]]></title>
   <link href="http://Shridhad.github.io/blog/categories/html/atom.xml" rel="self"/>
   <link href="http://Shridhad.github.io/"/>
-  <updated>2014-11-16T17:14:46+05:30</updated>
+  <updated>2014-11-16T17:45:42+05:30</updated>
   <id>http://Shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
@@ -74,7 +74,7 @@ You have to use the content by writing script, and you can access the content by
   var content = document.querySelector( 'link[rel="import"]' ).import;
 </code></p>
 
-<p>Now as you have imported the external document, you can grab a specific portion of imported document and clone it to your page.</p>
+<p>Now as you have imported the external document, you can grab a specific portion of imported document and clone it to your page. Here is a <a href="http://shridhad.github.io/html5demos/htmlImport/message.html">Demo</a>.</p>
 
 <p>``` javascript</p>
 
@@ -146,7 +146,8 @@ document.body.appendChild( el.cloneNode(true) );
   todoItems.appendChild( _dom.toDOM() );
 ```</p>
 
-<p><code>_template</code> is function that underscore return after compiling html template. <code>_dom</code> is actual html snippet that we will render in main document. <a href="https://gist.github.com/Shridhad/822e629e952c9af8c8af"><code>_toDOM</code></a> is function on String which converts the string into dom element so that you can append it as child.</p>
+<p><code>_template</code> is function that underscore return after compiling html template. <code>_dom</code> is actual html snippet that we will render in main document. <a href="https://gist.github.com/Shridhad/822e629e952c9af8c8af"><code>_toDOM</code></a> is function on String which converts the string into dom element so that you can append it as child.
+Here is <a href="http://shridhad.github.io/html5demos/htmlImport/">Demo</a>.</p>
 
 <p data-height="339" data-theme-id="6499" data-slug-hash="dPygYx" data-default-tab="result" data-user="shree33" class='codepen'>See the Pen <a href='http://codepen.io/shree33/pen/dPygYx/'>HTML Imports</a> by Shridhar Deshmukh (<a href='http://codepen.io/shree33'>@shree33</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
