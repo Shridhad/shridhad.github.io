@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: HTML5 | Shridhar Deshmukh]]></title>
+  <link href="http://Shridhad.github.io/blog/categories/html5/atom.xml" rel="self"/>
+  <link href="http://Shridhad.github.io/"/>
+  <updated>2014-11-16T15:18:16+05:30</updated>
+  <id>http://Shridhad.github.io/</id>
+  <author>
+    <name><![CDATA[Shridhar Deshmukh]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[HTML Imports]]></title>
+    <link href="http://Shridhad.github.io/blog/2014/11/16/html-imports/"/>
+    <updated>2014-11-16T14:01:31+05:30</updated>
+    <id>http://Shridhad.github.io/blog/2014/11/16/html-imports</id>
+    <content type="html"><![CDATA[<p>HTML Imports (or simply imports) is one of the piece from <a href="http://webcomponents.org/">Web Components</a> model, which allows you to load full external html document into your web page and that too without ajax. Imports provide convention for bundling HTML/CSS/JS into single deliverable component. Using imports you can create custom elements and then use them as new tags in your master document.</p>
+
+<p> <!-- more --></p>
+
+<p><blockquote><p>HTML Imports are a way to include and reuse HTML documents in other HTML documents.</p><footer><strong>HTML Imports &ndash;  <a href="http://www.w3.org/TR/html-imports/#abstract">http://www.w3.org/TR/html-imports/#abstract</a> W3C Working Draft</strong></footer></blockquote></p>
+
+<p>We will learn how to use HTML imports in projects, and also how we can use them with <code>&lt;template&gt;</code> to create dynamic web pages.</p>
+
+<h2>Table of Content</h2>
+
+<ol>
+<li>The Lowdown</li>
+<li>Using the Content</li>
+<li>Imports and Templates</li>
+<li>Browser Support</li>
+</ol>
+
+
+<br />
+
+
+<h2>1. The Lowdown</h2>
+
+<p>Include an import in your document using <code>&lt;link rel="import"&gt;</code>. Yes, it is a just link tag, with new value for <code>rel</code> attribute.</p>
+
+<p>```html</p>
+
+<pre><code>&lt;head&gt;
+    &lt;link rel="import" href="path/to/import.html"&gt;
+&lt;/head&gt;
+</code></pre>
+
+<p>```</p>
+
+<p>The referred url to imported document is an import location. For security reasons HTML imports adhere to <code>same-origin</code> policy. The import from another domain, the import location needs to be CORS set up correctly.</p>
+
+<p>```html</p>
+
+<pre><code>&lt;!-- Cross domain resources must be set up properly. --&gt;
+&lt;link rel="import" href="http://example.com/elements.html"&gt;
+</code></pre>
+
+<p>```</p>
+
+<br />
+
+
+<h2>2. Using the content</h2>
+
+<p>Importing external html doesn&rsquo;t pop the content of external document in the current document, it just fetches the content, parses it and makes it available for use.
+You have to use the content by writing script, and you can access the content by examining the <code>import</code> property of corresponding link element.</p>
+
+<p><code>javascript
+  var content = document.querySelector( 'link[rel="import"]' ).import;
+</code></p>
+
+<p>Now as you have imported the external document, you can grab a specific portion of imported document and clone it to your page.</p>
+
+<p>``` javascript</p>
+
+<pre><code>var content = document.querySelector( 'link[rel="import"]' ).import;
+
+var el = content.querySelector( ".warning" );
+
+document.body.appendChild( el.cloneNode(true) );
+</code></pre>
+
+<p>```</p>
+
+<h2>3. Imports and Templates</h2>
+
+<p>Now you understand how to import external document and access its content, now lets look at how you can use this technology with <code>&lt;template&gt;</code> element.</p>
+
+<p>Let&rsquo;s say that we are building a todo app and want a component that displays a todo item with a small description. Let&rsquo;s create a template that is responsible for displaying a todo item. Store this template in separate HTML file &ndash; <code>template.html</code>.</p>
+
+<p>``` html
+<template id="todo-item-template">
+  <div class="todo-item"></p>
+
+<pre><code>&lt;h2 class="title"&gt;{{ title }}&lt;/h2&gt;
+&lt;p class="description"&gt;{{ description }}&lt;/p&gt;
+</code></pre>
+
+<p>  </div>
+</template> 
+```</p>
+
+<p>I am using <a href="link=underscorejs.org">underscore.js</a> for templating. Also I have changed the interpolate setting using <code>_.templateSettings</code>.</p>
+
+<p>Next we need to import this template into our main document &ndash; <code>index.html</code>. Just add an <code>&lt;link&gt;</code> tag with <code>rel="import"</code>  attribute and href pointing to <code>template.html</code>. Lets also add and <code>id</code> attribute to tag this element that will help us to reference the element using JavaScript.</p>
+
+<p>``` html
+  <head></p>
+
+<pre><code>&lt;link rel="import" href="template.html" id="import-template"&gt;
+</code></pre>
+
+<p>  </head>
+```</p>
+
+<p>Now is the time write some script and stamp out the todo template.</p>
+
+<p>First of all, get the import link element and then use <code>import</code> property on that element to access the content of imported document.</p>
+
+<p><code>javascript
+  var templatesImport = document.querySelector( "#import-template" );
+  var importContent = templatesImport.import;
+</code></p>
+
+<p>Next find the template element and then access the content that we need to clone, i.e. <code>.todo-item</code> element.</p>
+
+<p><code>javascript
+  var template = importContent.querySelector( "#todo-item-template" );
+  var todoItem = template.content.querySelector( ".todo-item" );
+</code></p>
+
+<p>Now let&rsquo;s use underscore.js to compile our template with JSON and then append the newly create dom element into main document.</p>
+
+<p>``` javascript
+  var json = {&ldquo;title&rdquo;: &ldquo;Template Title&rdquo;, &ldquo;description&rdquo;: &ldquo;Template Description&rdquo;};</p>
+
+<p>  var <em>template = </em>.template( content.outerHTML );
+  var <em>dom = </em>template( json );</p>
+
+<p>  var todoItems = document.querySelector( &ldquo;#todo-items&rdquo; );
+  todoItems.appendChild( _dom.toDOM() );
+```</p>
+
+<p><code>_template</code> is function that underscore return after compiling html template. <code>_dom</code> is actual html snippet that we will render in main document. <a href="https://gist.github.com/Shridhad/822e629e952c9af8c8af"><code>_toDOM</code></a> is function on String which converts the string into dom element so that you can append it as child.</p>
+
+<p>That&rsquo;s it! You got your first todo item and now you also know how to use HTML imports and template together to create dynamic pages.</p>
+
+<h2>4. Browser Support</h2>
+
+<p>Browser support is still in the early days. Before using the feature, you can check to see if the user&rsquo;s browser supports HTML imports by looking for the <code>import</code> property on <code>&lt;link&gt;</code> element.</p>
+
+<p>``` javascript
+  function supportsImports() {</p>
+
+<pre><code>return 'import' in document.createElement( 'link' );
+</code></pre>
+
+<p>  }</p>
+
+<p>  if ( supportsImports() ) {</p>
+
+<pre><code>// Good to go!
+</code></pre>
+
+<p>  } else {</p>
+
+<pre><code>// Use other libraries/require systems to load files.
+</code></pre>
+
+<p>  }
+```</p>
+
+<p>You can also keep checking <a href="http://caniuse.com/#feat=imports">caniuse.com</a> for browser support.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>HTML Imports - Shridhar Deshmukh</title>
+  <meta name="author" content="Shridhar Deshmukh">
+
+  
+  <meta name="description" content="HTML Imports are a way to include and reuse HTML documents in other HTML documents.">
+  <meta name="keywords" content="html imports, external html resources, imports, shridhar, deshmukh, shridhar deshmukh">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Shridhad.github.io/blog/2014/11/16/html-imports">
+  <link href="/images/shree.png" rel="shortcut icon" type="image/png">
+  <link href="/images/shree.png" rel="icon" type="image/png">
+  <link href="/stylesheets/stackicons-social.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/style.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Shridhar Deshmukh" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300italic,400italic,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,500,300,600,700' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-48109674-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+    <div class="page-wrapper">
+        <header class="main-header" role="banner"><div class="container">
+    <a class="logo" href="/" title="Shridhar Deshmukh"> Shridhar Deshmukh </a>
+    <nav role="navigation" class="main-menu">
+        <div class="icon-menu text-center">
+            <a class="st-icon-menu-alt2 st-shape-icon"></a>
+        </div>
+        <ul class="main">
+            <li>
+                <a href="/"> Blog </a>
+            </li>
+            <li>
+                <a href="/blog/archives"> Archives </a>
+            </li>
+            <!--<li class="about-me">-->
+                <!--<   a href="/aboutme">About me</a>-->
+            <!--</li>-->
+        </ul>
+    </nav>
+    
+    <nav role="navigation" class="about-menu">
+        <ul class="about text-center st-multi-color st-shape-r5">
+            
+            <li>
+                <a class="st-icon-twitter" target="_blank" href="https://twitter.com/_shree33" title="Twitter"> Twitter </a>
+            </li>
+            
+            
+            <li>
+                <a class="st-icon-github-alt" target="_blank" href="https://github.com/shridhad" title="Github"> GitHub </a>
+            </li>
+            
+            
+            <li>
+                <a class="st-icon-codepen" target="_blank" href="https://codepen.io/shree33"> Codepen </a>
+            </li>
+            
+        </ul>
+    </nav>
+    
+</div>
+</header>
+        <div class="container">
+            <div id="post">
+
+<article>
+    <div class="title">
+        
+            <h1>
+                
+                    HTML Imports
+                
+            </h1>
+        
+    </div>
+
+    <div class="content">
+        
+            <div class="entry-content"><p>HTML Imports (or simply imports) is one of the piece from <a href="http://webcomponents.org/">Web Components</a> model, which allows you to load full external html document into your web page and that too without ajax. Imports provide convention for bundling HTML/CSS/JS into single deliverable component. Using imports you can create custom elements and then use them as new tags in your master document.</p>
+
+<p> <!-- more --></p>
+
+<blockquote><p>HTML Imports are a way to include and reuse HTML documents in other HTML documents.</p><footer><strong>HTML Imports -</strong> <cite><a href='http://www.w3.org/TR/html-imports/#abstract'>W3C Working Draft</a></cite></footer></blockquote>
+
+
+<p>We will learn how to use HTML imports in projects, and also how we can use them with <code>&lt;template&gt;</code> to create dynamic web pages.</p>
+
+<h2>Table of Content</h2>
+
+<ol>
+<li>The Lowdown</li>
+<li>Using the Content</li>
+<li>Imports and Templates</li>
+<li>Browser Support</li>
+</ol>
+
+
+<br />
+
+
+<h2>1. The Lowdown</h2>
+
+<p>Include an import in your document using <code>&lt;link rel="import"&gt;</code>. Yes, it is a just link tag, with new value for <code>rel</code> attribute.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;import&quot;</span> <span class="na">href=</span><span class="s">&quot;path/to/import.html&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;/head&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The referred url to imported document is an import location. For security reasons HTML imports adhere to <code>same-origin</code> policy. The import from another domain, the import location needs to be CORS set up correctly.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- Cross domain resources must be set up properly. --&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;import&quot;</span> <span class="na">href=</span><span class="s">&quot;http://example.com/elements.html&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<br />
+
+
+<h2>2. Using the content</h2>
+
+<p>Importing external html doesn&rsquo;t pop the content of external document in the current document, it just fetches the content, parses it and makes it available for use.
+You have to use the content by writing script, and you can access the content by examining the <code>import</code> property of corresponding link element.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s1">&#39;link[rel=&quot;import&quot;]&#39;</span> <span class="p">).</span><span class="kr">import</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now as you have imported the external document, you can grab a specific portion of imported document and clone it to your page.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s1">&#39;link[rel=&quot;import&quot;]&#39;</span> <span class="p">).</span><span class="kr">import</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">content</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s2">&quot;.warning&quot;</span> <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">el</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. Imports and Templates</h2>
+
+<p>Now you understand how to import external document and access its content, now lets look at how you can use this technology with <code>&lt;template&gt;</code> element.</p>
+
+<p>Let&rsquo;s say that we are building a todo app and want a component that displays a todo item with a small description. Let&rsquo;s create a template that is responsible for displaying a todo item. Store this template in separate HTML file &ndash; <code>template.html</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;template</span> <span class="na">id=</span><span class="s">&quot;todo-item-template&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;todo-item&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;h2</span> <span class="na">class=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span>{{ title }}<span class="nt">&lt;/h2&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>{{ description }}<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/template&gt;</span> 
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I am using <a href="link=underscorejs.org">underscore.js</a> for templating. Also I have changed the interpolate setting using <code>_.templateSettings</code>.</p>
+
+<p>Next we need to import this template into our main document &ndash; <code>index.html</code>. Just add an <code>&lt;link&gt;</code> tag with <code>rel="import"</code>  attribute and href pointing to <code>template.html</code>. Lets also add and <code>id</code> attribute to tag this element that will help us to reference the element using JavaScript.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;import&quot;</span> <span class="na">href=</span><span class="s">&quot;template.html&quot;</span> <span class="na">id=</span><span class="s">&quot;import-template&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now is the time write some script and stamp out the todo template.</p>
+
+<p>First of all, get the import link element and then use <code>import</code> property on that element to access the content of imported document.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">var</span> <span class="nx">templatesImport</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s2">&quot;#import-template&quot;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">importContent</span> <span class="o">=</span> <span class="nx">templatesImport</span><span class="p">.</span><span class="kr">import</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next find the template element and then access the content that we need to clone, i.e. <code>.todo-item</code> element.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nx">importContent</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s2">&quot;#todo-item-template&quot;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">todoItem</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s2">&quot;.todo-item&quot;</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now let&rsquo;s use underscore.js to compile our template with JSON and then append the newly create dom element into main document.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">var</span> <span class="nx">json</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;Template Title&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Template Description&quot;</span><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">_template</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span> <span class="nx">content</span><span class="p">.</span><span class="nx">outerHTML</span> <span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">_dom</span> <span class="o">=</span> <span class="nx">_template</span><span class="p">(</span> <span class="nx">json</span> <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">todoItems</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s2">&quot;#todo-items&quot;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="nx">todoItems</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">_dom</span><span class="p">.</span><span class="nx">toDOM</span><span class="p">()</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>_template</code> is function that underscore return after compiling html template. <code>_dom</code> is actual html snippet that we will render in main document. <a href="https://gist.github.com/Shridhad/822e629e952c9af8c8af"><code>_toDOM</code></a> is function on String which converts the string into dom element so that you can append it as child.</p>
+
+<p>That&rsquo;s it! You got your first todo item and now you also know how to use HTML imports and template together to create dynamic pages.</p>
+
+<h2>4. Browser Support</h2>
+
+<p>Browser support is still in the early days. Before using the feature, you can check to see if the user&rsquo;s browser supports HTML imports by looking for the <code>import</code> property on <code>&lt;link&gt;</code> element.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">function</span> <span class="nx">supportsImports</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="s1">&#39;import&#39;</span> <span class="k">in</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span> <span class="s1">&#39;link&#39;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span> <span class="nx">supportsImports</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// Good to go!</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// Use other libraries/require systems to load files.</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can also keep checking <a href="http://caniuse.com/#feat=imports">caniuse.com</a> for browser support.</p>
+</div>
+        
+        
+            <p class="footer">
+                
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-16T14:01:31+05:30"  data-updated="true"  > Nov 16<span>th</span>, 2014</time>
+            </p>
+        
+        
+            <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Shridhad.github.io/blog/2014/11/16/html-imports/" data-via="_shree33">Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-href="http://Shridhad.github.io/blog/2014/11/16/html-imports/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+  
+</div>
+
+        
+    </div>
+
+</article>
+
+
+  <section id="disqus">
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+        </div>
+    </div>
+    <footer class="main-footer">
+    <div class="container fun">
+        <div class="column">
+            <div class="number">0</div>
+            <div class="description">Late nights this month</div>
+        </div>
+        <div class="column">
+            <div class="number">2</div>
+            <div class="description">Cans of Coke Max consumed within 24 hours</div>
+        </div>
+        <div class="column">
+            <div class="number">2</div>
+            <div class="description">Days off this year!</div>
+        </div>
+    </div>
+    <div class="about container">
+        <div class="column aboutsite">
+            <p>This site is personal portfolio of developer - Shridhar Deshmukh.</p>
+            <p>Showcasing UI and interactive work, as well as worthless nonsense.</p>
+        </div>
+        <div class="column"></div>
+        <div class="column copyright">
+            <p>Copyright &copy; 2014 - Shridhar Deshmukh </p>
+            <p>- <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span></p>
+        </div>
+    </div>
+</footer>
+
+
+
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'shridhad';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://Shridhad.github.io/blog/2014/11/16/html-imports/';
+        var disqus_url = 'http://Shridhad.github.io/blog/2014/11/16/html-imports/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+    <script>!function(d,s,id){
+        var js,
+            fjs=d.getElementsByTagName(s)[0],
+            p=/^http:/.test(d.location)?'http':'https';
+        if(!d.getElementById(id)){
+            js=d.createElement(s);
+            js.id=id;
+            js.src=p+'://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js,fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+    </script>
+
+
+
+
+
+</body>
+</html>
