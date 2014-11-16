@@ -4,7 +4,7 @@
   <title><![CDATA[Category: HTML | Shridhar Deshmukh]]></title>
   <link href="http://Shridhad.github.io/blog/categories/html/atom.xml" rel="self"/>
   <link href="http://Shridhad.github.io/"/>
-  <updated>2014-11-16T15:18:16+05:30</updated>
+  <updated>2014-11-16T15:21:00+05:30</updated>
   <id>http://Shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
@@ -105,7 +105,7 @@ document.body.appendChild( el.cloneNode(true) );
 </template> 
 ```</p>
 
-<p>I am using <a href="link=underscorejs.org">underscore.js</a> for templating. Also I have changed the interpolate setting using <code>_.templateSettings</code>.</p>
+<p>I am using <a href="underscorejs.org">underscore.js</a> for templating. Also I have changed the interpolate setting using <code>_.templateSettings</code>.</p>
 
 <p>Next we need to import this template into our main document &ndash; <code>index.html</code>. Just add an <code>&lt;link&gt;</code> tag with <code>rel="import"</code>  attribute and href pointing to <code>template.html</code>. Lets also add and <code>id</code> attribute to tag this element that will help us to reference the element using JavaScript.</p>
 
