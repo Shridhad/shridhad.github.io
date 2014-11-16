@@ -242,7 +242,7 @@ You have to use the content by writing script, and you can access the content by
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">var</span> <span class="nx">json</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;Template Title&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Template Description&quot;</span><span class="p">};</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">var</span> <span class="nx">json</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;Todo Title&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Todo Description&quot;</span><span class="p">};</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">_template</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span> <span class="nx">content</span><span class="p">.</span><span class="nx">outerHTML</span> <span class="p">);</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">_dom</span> <span class="o">=</span> <span class="nx">_template</span><span class="p">(</span> <span class="nx">json</span> <span class="p">);</span>
@@ -253,6 +253,12 @@ You have to use the content by writing script, and you can access the content by
 
 
 <p><code>_template</code> is function that underscore return after compiling html template. <code>_dom</code> is actual html snippet that we will render in main document. <a href="https://gist.github.com/Shridhad/822e629e952c9af8c8af"><code>_toDOM</code></a> is function on String which converts the string into dom element so that you can append it as child.</p>
+
+<p data-height="339" data-theme-id="6499" data-slug-hash="dPygYx" data-default-tab="result" data-user="shree33" class='codepen'>See the Pen <a href='http://codepen.io/shree33/pen/dPygYx/'>HTML Imports</a> by Shridhar Deshmukh (<a href='http://codepen.io/shree33'>@shree33</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
 
 <p>That&rsquo;s it! You got your first todo item and now you also know how to use HTML imports and template together to create dynamic pages.</p>
 

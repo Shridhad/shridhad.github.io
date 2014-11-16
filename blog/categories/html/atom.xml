@@ -4,7 +4,7 @@
   <title><![CDATA[Category: HTML | Shridhar Deshmukh]]></title>
   <link href="http://Shridhad.github.io/blog/categories/html/atom.xml" rel="self"/>
   <link href="http://Shridhad.github.io/"/>
-  <updated>2014-11-16T15:21:00+05:30</updated>
+  <updated>2014-11-16T17:14:46+05:30</updated>
   <id>http://Shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
@@ -137,7 +137,7 @@ document.body.appendChild( el.cloneNode(true) );
 <p>Now let&rsquo;s use underscore.js to compile our template with JSON and then append the newly create dom element into main document.</p>
 
 <p>``` javascript
-  var json = {&ldquo;title&rdquo;: &ldquo;Template Title&rdquo;, &ldquo;description&rdquo;: &ldquo;Template Description&rdquo;};</p>
+  var json = {&ldquo;title&rdquo;: &ldquo;Todo Title&rdquo;, &ldquo;description&rdquo;: &ldquo;Todo Description&rdquo;};</p>
 
 <p>  var <em>template = </em>.template( content.outerHTML );
   var <em>dom = </em>template( json );</p>
@@ -147,6 +147,12 @@ document.body.appendChild( el.cloneNode(true) );
 ```</p>
 
 <p><code>_template</code> is function that underscore return after compiling html template. <code>_dom</code> is actual html snippet that we will render in main document. <a href="https://gist.github.com/Shridhad/822e629e952c9af8c8af"><code>_toDOM</code></a> is function on String which converts the string into dom element so that you can append it as child.</p>
+
+<p data-height="339" data-theme-id="6499" data-slug-hash="dPygYx" data-default-tab="result" data-user="shree33" class='codepen'>See the Pen <a href='http://codepen.io/shree33/pen/dPygYx/'>HTML Imports</a> by Shridhar Deshmukh (<a href='http://codepen.io/shree33'>@shree33</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+
+<script async src="http://Shridhad.github.io//assets.codepen.io/assets/embed/ei.js"></script>
+
 
 <p>That&rsquo;s it! You got your first todo item and now you also know how to use HTML imports and template together to create dynamic pages.</p>
 
