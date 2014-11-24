@@ -4,7 +4,7 @@
   <title><![CDATA[Category: HTML5 | Shridhar Deshmukh]]></title>
   <link href="http://Shridhad.github.io/blog/categories/html5/atom.xml" rel="self"/>
   <link href="http://Shridhad.github.io/"/>
-  <updated>2014-11-16T17:45:42+05:30</updated>
+  <updated>2014-11-25T00:43:11+05:30</updated>
   <id>http://Shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Talk - Polymer JS @ XConf Bangalore]]></title>
+    <link href="http://Shridhad.github.io/blog/2014/11/24/talk-polymer-js-xconfblr/"/>
+    <updated>2014-11-24T23:59:58+05:30</updated>
+    <id>http://Shridhad.github.io/blog/2014/11/24/talk-polymer-js-xconfblr</id>
+    <content type="html"><![CDATA[<p>Polymer provides a way to do web development based on encapsulated custom elements. Its uses Shadow DOM for encapsulating content of element and we get scoped styles. Also polymer makes the custom elements totally interoperable with x-tags and vanilla custom elements.</p>
+
+<!-- more -->
+
+
+<p>Polymer also comes with some predefined and general purpose custom elements. Polymer has categorized these new elements into core and paper elements:</p>
+
+<ol>
+<li>Core Elements &ndash; Core elements include things like icons, layout elements, toolbars and also non-ui elements like ajax, local-storage.</li>
+<li>Paper Elements &ndash; implements material design system.</li>
+</ol>
+
+
+<br>Polymer is primarily built on 4 pillars of web components:
+
+
+<ol>
+<li>Custom Elements</li>
+<li>HTML Imports</li>
+<li>HTML Templates</li>
+<li>Shadow DOM</li>
+</ol>
+
+
+<br>Here is my talk at XConf, ThoughtWorks Bangalore on 22 Nov, 2014.
+
+
+<div class="speakerdeck">
+<script async class="speakerdeck-embed" style="width:90%" data-id="a3c541505633013284a82208fcc66d6d" data-ratio="1.33333333333333" src="http://Shridhad.github.io//speakerdeck.com/assets/embed.js"></script>
+</div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[HTML Imports]]></title>
