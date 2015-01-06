@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Shridhar Deshmukh]]></title>
-  <link href="http://Shridhad.github.io/atom.xml" rel="self"/>
-  <link href="http://Shridhad.github.io/"/>
-  <updated>2014-11-25T00:43:11+05:30</updated>
-  <id>http://Shridhad.github.io/</id>
+  <link href="http://shridhad.github.io/atom.xml" rel="self"/>
+  <link href="http://shridhad.github.io/"/>
+  <updated>2015-01-06T11:22:50+05:30</updated>
+  <id>http://shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
     
@@ -14,10 +14,189 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Custom Elements]]></title>
+    <link href="http://shridhad.github.io/blog/2015/01/06/custom-elements/"/>
+    <updated>2015-01-06T07:15:57+05:30</updated>
+    <id>http://shridhad.github.io/blog/2015/01/06/custom-elements</id>
+    <content type="html"><![CDATA[<p>Custom Elements, one of the most important spec under web components umbrella, enables web developer to define new types of HTMLElement, which can have it&rsquo;s own markup(HTML), behavior(JS) and style(CSS). These newly created custom HTML tags can be reused as complex components in multiple websites and web apps.</p>
+
+<!-- more -->
+
+
+
+
+<blockquote><p>Provide a way for web developers to build their own, full-featured DOM elements.</p><footer><strong>Custom Elements Motivation -</strong> <cite><a href='http://w3c.github.io/webcomponents/spec/custom/#motivations'>W3C Editor&#8217;s Draft</a></cite></footer></blockquote>
+
+
+<h2>Table of Content</h2>
+
+<ol>
+<li>Registration and Definition</li>
+<li>Imperative Usage</li>
+<li>Adding Behavior</li>
+<li>Inheriting native elements</li>
+<li>Browser Support</li>
+<li>Semantics</li>
+</ol>
+
+
+<p><br /></p>
+
+<h2>1. Registration and Definition</h2>
+
+<p>Custom Elements specification defines a programmatic way to define and register a custom element, using <code>document.registerElement</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'> <span class="kd">var</span> <span class="nx">CustomElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;custom-element&#39;</span> <span class="p">);</span>
+</span><span class='line'> <span class="kd">var</span> <span class="nx">XLoader</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;x-loader&#39;</span> <span class="p">);</span>
+</span><span class='line'> <span class="kd">var</span> <span class="nx">GoogleAnalytics</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;google-analytics&#39;</span> <span class="p">);</span>
+</span><span class='line'> <span class="kd">var</span> <span class="nx">DropDown</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;drop-down&#39;</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>document.registerElement</code> takes 2 arguments. The first argument is custom element&rsquo;s tag name. Whereas second argument is a object which holds the prototype object which defines feature set for that custom element. <code>document.registerElement</code> returns a constructor that can be used to create instances of custom element. There are other ways of instantiating elements, we will talk about them in a while.</p>
+
+<h3>Naming Rules</h3>
+
+<p>The tag name must contain at least one dash(-). Failing to do so will result in error and element won&rsquo;t be created. For example, <em>&lt;x-loader&gt;, &lt;my-app&gt;, &lt;awesome-progress-bar&gt;</em> are all valid names, whereas <em>&lt;loader&gt;, &lt;component&gt;</em> are not. Any uppercase letter specified in tag name will be converted to lowercase.</p>
+
+<h2>2. Imperative Usage</h2>
+
+<p>As I mentioned above <code>document.registerElement</code> returns a constructor that can be used to create the instances of that particular custom element.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'> <span class="kd">var</span> <span class="nx">XLoader</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;x-loader&#39;</span> <span class="p">);</span>
+</span><span class='line'> <span class="kd">var</span> <span class="nx">xloader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XLoader</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">xloader</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can also use <code>document.createElement</code> to instantiate the custom element, same as native HTML element.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;google-analytics&#39;</span> <span class="p">);</span>
+</span><span class='line'> <span class="kd">var</span> <span class="nx">googleAnalytics</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span> <span class="s1">&#39;google-analytics&#39;</span> <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">googleAnalytics</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Above are two ways to instantiate element in JavaScript, you can also instantiate custom element in HTML, just use tag wherever you want in the document.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'> <span class="nt">&lt;facebook-like-button&gt;&lt;/facebook-like-button&gt;</span>
+</span><span class='line'> <span class="nt">&lt;facebook-share-button&gt;&lt;/facebook-share-button&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. Adding Behavior</h2>
+
+<p>We learned how to define and use a custom element, lets learn how we can add features to these elements. Following codepen shows demo of <em>&lt;drop-down&gt;</em> custom element which is almost similar to <a href="http://getbootstrap.com/components/#dropdowns">one in bootstrap</a>.</p>
+
+<div data-height="268" data-theme-id="6499" data-slug-hash="qEqVKx" data-default-tab="html" data-user="shree33" class='codepen'>
+<p>See the Pen <a href='http://codepen.io/shree33/pen/qEqVKx/'>Drop-down - Custom Element</a> by Shridhar Deshmukh (<a href='http://codepen.io/shree33'>@shree33</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+</div>
+
+
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+
+<p>Above HTML is only markup that you need to write to create drop-down like menu, without writing any javascript. The drop-down element knows how to handle the user interactions such as click, this is defined as behavior for the element while registering the element.</p>
+
+<p>If you check the JavaScript in above codepen, you will notice that I have created a prototype object and passed it to <code>document.registerElement</code>. Prototype object is place where you can bundle tailored functionality of element by defining properties and methods.<br/>
+I first created empty prototype object from HTMLElement, which will include feature set from HTMLElement in its prototype chain. Later I defined what should happen when the element gets created, using <code>createCallback</code>. Finally passed this prototype object to <code>document.registerElement</code> while registering the element. Once the element gets created, <code>createdCallback</code> is lifecycle method of custom element which will be called and click event listener will be added on button. There are other lifecycle methods that gets called during different phases of element&rsquo;s life.</p>
+
+<h3>Lifecycle Callbacks</h3>
+
+<p>The callback methods are special methods that gets called when certain events happen on element. Following is list of lifecycle callback methods.</p>
+
+<table class="this">
+     <thead>
+          <tr>
+               <td> Callback method </td>
+               <td> Element&#8217;s Life Phase </td>
+          </tr>
+     </thead>
+     <tbody>
+          <tr>
+               <td> createdCallback </td>
+               <td> an instance of the element is created </td>
+          </tr>
+          <tr>
+               <td> attachedCallback </td>
+               <td> an instance was inserted into the document </td>
+          </tr>
+          <tr>
+               <td> detachedCallback </td>
+               <td> an instance was removed from the document </td>
+          </tr>
+          <tr>
+               <td> attributeChangedCallback </td>
+               <td> an attribute was added, removed, or updated </td>
+          </tr>
+     </tbody>
+</table>
+
+
+<h2>4. Inheriting native elements</h2>
+
+<p>Custom element can extend native HTML element&rsquo;s features or features of other existing custom element. The custom element which extends native HTML elements called type extension custom element. To extend one of the native element we define new element which inherits the prototype of that native element and extends the tag name of that element.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'> <span class="kd">var</span> <span class="nx">SortableTable</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;sortable-table&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">prototype</span><span class="o">:</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLTableElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">),</span>
+</span><span class='line'>      <span class="kr">extends</span><span class="o">:</span> <span class="s1">&#39;table&#39;</span>
+</span><span class='line'> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Above code block extends native <em>&lt;table&gt;</em> element, to do so it extends the <code>table</code> tag, also its prototype is based on <code>HTMLTableElement</code> and not the <code>HTMLElement</code>. By doing so you have extended APIs on top of basic <em>&lt;table&gt;</em> element&rsquo;s features. To use this custom element, we just create the original tag element and specify custom tag name using <code>is</code> attribute.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'> <span class="nt">&lt;table</span> <span class="na">is=</span><span class="s">&quot;sortable-table&quot;</span><span class="nt">&gt;</span> <span class="nt">&lt;/table&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>5. Browser Support</h2>
+
+<p>Browser support of Custom Element is still in early days, currently supported by Chrome and Opera. Firefox by default it disabled, you can enable through <code>dom.webcomponents.enabled</code> preference in <code>about:config</code>. You can also check the updated browser support on <a href="http://caniuse.com/#feat=custom-elements">caniuse.com</a>. For other browsers you can use <a href="http://webcomponents.org/polyfills/">pollyfill</a> library <a href="https://github.com/webcomponents/webcomponentsjs/blob/master/webcomponents.js">webcomponents.js</a>.</p>
+
+<h2>6. Semantics</h2>
+
+<p>Custom elements has no special meaning at all,conveys similar amount of semantics as a HTML <em>&lt;div&gt;</em> and <em>&lt;span&gt;</em> element, but for semantics to be formally expressed, developers must convey the same using <a href="http://w3c.github.io/aria/aria/aria.html#usage_intro">ARIA rules</a>, <a href="http://w3c.github.io/aria/aria/aria.html#introstates">states and properties</a>. But type extension custom elements inherits the semantics of the element type it extends.</p>
+
+<h2>Conclusion</h2>
+
+<p>Custom Elements are true HTML elements, they come with many advantages such as</p>
+
+<ul>
+<li>Encapsulation - Encapsulate internal details of component</li>
+<li>Reusability - a component can be reused at multiple places, hence increase in productivity</li>
+<li>Inheritance - inherits the properties and features from existing HTML elements</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Talk - Polymer JS @ XConf Bangalore]]></title>
-    <link href="http://Shridhad.github.io/blog/2014/11/24/talk-polymer-js-xconfblr/"/>
+    <link href="http://shridhad.github.io/blog/2014/11/24/talk-polymer-js-xconfblr/"/>
     <updated>2014-11-24T23:59:58+05:30</updated>
-    <id>http://Shridhad.github.io/blog/2014/11/24/talk-polymer-js-xconfblr</id>
+    <id>http://shridhad.github.io/blog/2014/11/24/talk-polymer-js-xconfblr</id>
     <content type="html"><![CDATA[<p>Polymer provides a way to do web development based on encapsulated custom elements. Its uses Shadow DOM for encapsulating content of element and we get scoped styles. Also polymer makes the custom elements totally interoperable with x-tags and vanilla custom elements.</p>
 
 <!-- more -->
@@ -26,13 +205,12 @@
 <p>Polymer also comes with some predefined and general purpose custom elements. Polymer has categorized these new elements into core and paper elements:</p>
 
 <ol>
-<li>Core Elements &ndash; Core elements include things like icons, layout elements, toolbars and also non-ui elements like ajax, local-storage.</li>
-<li>Paper Elements &ndash; implements material design system.</li>
+<li>Core Elements - Core elements include things like icons, layout elements, toolbars and also non-ui elements like ajax, local-storage.</li>
+<li>Paper Elements - implements material design system.</li>
 </ol>
 
 
-<br>Polymer is primarily built on 4 pillars of web components:
-
+<p><br>Polymer is primarily built on 4 pillars of web components:</p>
 
 <ol>
 <li>Custom Elements</li>
@@ -42,11 +220,10 @@
 </ol>
 
 
-<br>Here is my talk at XConf, ThoughtWorks Bangalore on 22 Nov, 2014.
-
+<p><br>Here is my talk at XConf, ThoughtWorks Bangalore on 22 Nov, 2014.</p>
 
 <div class="speakerdeck">
-<script async class="speakerdeck-embed" style="width:90%" data-id="a3c541505633013284a82208fcc66d6d" data-ratio="1.33333333333333" src="http://Shridhad.github.io//speakerdeck.com/assets/embed.js"></script>
+<script async class="speakerdeck-embed" style="width:90%" data-id="a3c541505633013284a82208fcc66d6d" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 </div>
 
 ]]></content>
@@ -54,9 +231,9 @@
   
   <entry>
     <title type="html"><![CDATA[HTML Imports]]></title>
-    <link href="http://Shridhad.github.io/blog/2014/11/16/html-imports/"/>
+    <link href="http://shridhad.github.io/blog/2014/11/16/html-imports/"/>
     <updated>2014-11-16T14:01:31+05:30</updated>
-    <id>http://Shridhad.github.io/blog/2014/11/16/html-imports</id>
+    <id>http://shridhad.github.io/blog/2014/11/16/html-imports</id>
     <content type="html"><![CDATA[<p>HTML Imports (or simply imports) is one of the piece from <a href="http://webcomponents.org/">Web Components</a> model, which allows you to load full external html document into your web page and that too without ajax. Imports provide convention for bundling HTML/CSS/JS into single deliverable component. Using imports you can create custom elements and then use them as new tags in your master document.</p>
 
 <p> <!-- more --></p>
@@ -76,8 +253,7 @@
 </ol>
 
 
-<br />
-
+<p><br /></p>
 
 <h2>1. The Lowdown</h2>
 
@@ -101,8 +277,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<br />
-
+<p><br /></p>
 
 <h2>2. Using the content</h2>
 
@@ -133,7 +308,7 @@ You have to use the content by writing script, and you can access the content by
 
 <p>Now you understand how to import external document and access its content, now lets look at how you can use this technology with <code>&lt;template&gt;</code> element.</p>
 
-<p>Let&rsquo;s say that we are building a todo app and want a component that displays a todo item with a small description. Let&rsquo;s create a template that is responsible for displaying a todo item. Store this template in separate HTML file &ndash; <code>template.html</code>.</p>
+<p>Let&rsquo;s say that we are building a todo app and want a component that displays a todo item with a small description. Let&rsquo;s create a template that is responsible for displaying a todo item. Store this template in separate HTML file - <code>template.html</code>.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -152,7 +327,7 @@ You have to use the content by writing script, and you can access the content by
 
 <p>I am using <a href="underscorejs.org">underscore.js</a> for templating. Also I have changed the interpolate setting using <code>_.templateSettings</code>.</p>
 
-<p>Next we need to import this template into our main document &ndash; <code>index.html</code>. Just add an <code>&lt;link&gt;</code> tag with <code>rel="import"</code>  attribute and href pointing to <code>template.html</code>. Lets also add and <code>id</code> attribute to tag this element that will help us to reference the element using JavaScript.</p>
+<p>Next we need to import this template into our main document - <code>index.html</code>. Just add an <code>&lt;link&gt;</code> tag with <code>rel="import"</code>  attribute and href pointing to <code>template.html</code>. Lets also add and <code>id</code> attribute to tag this element that will help us to reference the element using JavaScript.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -208,7 +383,7 @@ Here is <a href="http://shridhad.github.io/html5demos/htmlImport/">Demo</a>.</p>
 <p data-height="339" data-theme-id="6499" data-slug-hash="dPygYx" data-default-tab="result" data-user="shree33" class='codepen'>See the Pen <a href='http://codepen.io/shree33/pen/dPygYx/'>HTML Imports</a> by Shridhar Deshmukh (<a href='http://codepen.io/shree33'>@shree33</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
 
-<script async src="http://Shridhad.github.io//assets.codepen.io/assets/embed/ei.js"></script>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 
 <p>That&rsquo;s it! You got your first todo item and now you also know how to use HTML imports and template together to create dynamic pages.</p>
@@ -244,9 +419,9 @@ Here is <a href="http://shridhad.github.io/html5demos/htmlImport/">Demo</a>.</p>
   
   <entry>
     <title type="html"><![CDATA[What Is `this`?]]></title>
-    <link href="http://Shridhad.github.io/blog/2014/06/27/what-is-this/"/>
+    <link href="http://shridhad.github.io/blog/2014/06/27/what-is-this/"/>
     <updated>2014-06-27T08:27:26+05:30</updated>
-    <id>http://Shridhad.github.io/blog/2014/06/27/what-is-this</id>
+    <id>http://shridhad.github.io/blog/2014/06/27/what-is-this</id>
     <content type="html"><![CDATA[<p>The most powerful keyword in JavaScript is <code>this</code> and many people get tripped by it. People expect it to work like <code>this</code> in Java, but understand that JavaScript is not Java.
 Unfortunately understanding behavior of <code>this</code> is little harder if you are new to JavaScript, but certainly its not a magic. And as you start getting to used to <code>this</code>, its rule are actually very simple.</p>
 
@@ -272,8 +447,7 @@ And an execution context is a specification device that is used to track the run
 </ol>
 
 
-<br />
-
+<p><br /></p>
 
 <h2>1. Global Context</h2>
 
@@ -425,7 +599,7 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
 <p data-height="268" data-theme-id="6499" data-slug-hash="jbkig" data-default-tab="js" class='codepen'>See the Pen <a href='http://codepen.io/shree33/pen/jbkig/'>this in DOM Event Handler</a> by Shridhar Deshmukh (<a href='http://codepen.io/shree33'>@shree33</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
 
-<script async src="http://Shridhad.github.io//codepen.io/assets/embed/ei.js"></script>
+<script async src="//codepen.io/assets/embed/ei.js"></script>
 
 
 <p>When you click on the button, the <code>handler</code> is invoked as method of the button, so <code>this</code> refers to the target element. How that happens is here, when you say <code>$("button").click(handler)</code>, there will be a new copy of <code>handler</code> created and bound to the button using <code>.bind()</code>. This is done by <code>attachEvent/addEventLister</code> method.</p>
@@ -515,9 +689,9 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
   
   <entry>
     <title type="html"><![CDATA[jJsonViewer - jQuery Plugin]]></title>
-    <link href="http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin/"/>
+    <link href="http://shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin/"/>
     <updated>2014-02-15T18:40:08+05:30</updated>
-    <id>http://Shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin</id>
+    <id>http://shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin</id>
     <content type="html"><![CDATA[<p><link href="http://shridhad.github.io/jjsonviewer/css/jjsonviewer.css" rel="stylesheet" type="text/css">
 <a href="https://github.com/Shridhad/jjsonviewer">View on Github</a></p>
 
@@ -526,7 +700,7 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
 <!-- more -->
 
 
-<h2>How to use &ndash;</h2>
+<h2>How to use -</h2>
 
 <ul>
 <li>Just download jJsonViewer plugin. You only need javascript and stylesheet.</li>
@@ -535,7 +709,7 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
 </ul>
 
 
-<h3>Demo &ndash;</h3>
+<h3>Demo -</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -603,15 +777,15 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
   
   <entry>
     <title type="html"><![CDATA[Stop Repeating event.preventDefault()]]></title>
-    <link href="http://Shridhad.github.io/blog/2014/01/12/stop-repeating-event-dot-preventdefault/"/>
+    <link href="http://shridhad.github.io/blog/2014/01/12/stop-repeating-event-dot-preventdefault/"/>
     <updated>2014-01-12T10:29:02+05:30</updated>
-    <id>http://Shridhad.github.io/blog/2014/01/12/stop-repeating-event-dot-preventdefault</id>
+    <id>http://shridhad.github.io/blog/2014/01/12/stop-repeating-event-dot-preventdefault</id>
     <content type="html"><![CDATA[<p>If you end up repeating <code>event.preventDefault();</code>  in all/most of your event handlers, then you can stop yourself by using decorator over your actual event handlers.</p>
 
 <!-- more -->
 
 
-<p>Here is an example &ndash;</p>
+<p>Here is an example -</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

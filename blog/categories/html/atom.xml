@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: HTML | Shridhar Deshmukh]]></title>
-  <link href="http://Shridhad.github.io/blog/categories/html/atom.xml" rel="self"/>
-  <link href="http://Shridhad.github.io/"/>
-  <updated>2014-11-25T00:43:11+05:30</updated>
-  <id>http://Shridhad.github.io/</id>
+  <title><![CDATA[Category: Html | Shridhar Deshmukh]]></title>
+  <link href="http://shridhad.github.io/blog/categories/html/atom.xml" rel="self"/>
+  <link href="http://shridhad.github.io/"/>
+  <updated>2015-01-06T11:22:50+05:30</updated>
+  <id>http://shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
     
@@ -14,10 +14,161 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Custom Elements]]></title>
+    <link href="http://shridhad.github.io/blog/2015/01/06/custom-elements/"/>
+    <updated>2015-01-06T07:15:57+05:30</updated>
+    <id>http://shridhad.github.io/blog/2015/01/06/custom-elements</id>
+    <content type="html"><![CDATA[<p>Custom Elements, one of the most important spec under web components umbrella, enables web developer to define new types of HTMLElement, which can have it&rsquo;s own markup(HTML), behavior(JS) and style(CSS). These newly created custom HTML tags can be reused as complex components in multiple websites and web apps.</p>
+
+<!-- more -->
+
+
+<p><blockquote><p>Provide a way for web developers to build their own, full-featured DOM elements.</p><footer><strong>Custom Elements Motivation -  <a href="http://w3c.github.io/webcomponents/spec/custom/#motivations">http://w3c.github.io/webcomponents/spec/custom/#motivations</a> W3C Editor&rsquo;s Draft</strong></footer></blockquote></p>
+
+<h2>Table of Content</h2>
+
+<ol>
+<li>Registration and Definition</li>
+<li>Imperative Usage</li>
+<li>Adding Behavior</li>
+<li>Inheriting native elements</li>
+<li>Browser Support</li>
+<li>Semantics</li>
+</ol>
+
+
+<p><br /></p>
+
+<h2>1. Registration and Definition</h2>
+
+<p>Custom Elements specification defines a programmatic way to define and register a custom element, using <code>document.registerElement</code>.</p>
+
+<pre><code class="javascript">     var CustomElement = document.registerElement( 'custom-element' );
+     var XLoader = document.registerElement( 'x-loader' );
+     var GoogleAnalytics = document.registerElement( 'google-analytics' );
+     var DropDown = document.registerElement( 'drop-down' );
+</code></pre>
+
+<p><code>document.registerElement</code> takes 2 arguments. The first argument is custom element&rsquo;s tag name. Whereas second argument is a object which holds the prototype object which defines feature set for that custom element. <code>document.registerElement</code> returns a constructor that can be used to create instances of custom element. There are other ways of instantiating elements, we will talk about them in a while.</p>
+
+<h3>Naming Rules</h3>
+
+<p>The tag name must contain at least one dash(-). Failing to do so will result in error and element won&rsquo;t be created. For example, <em>&lt;x-loader&gt;, &lt;my-app&gt;, &lt;awesome-progress-bar&gt;</em> are all valid names, whereas <em>&lt;loader&gt;, &lt;component&gt;</em> are not. Any uppercase letter specified in tag name will be converted to lowercase.</p>
+
+<h2>2. Imperative Usage</h2>
+
+<p>As I mentioned above <code>document.registerElement</code> returns a constructor that can be used to create the instances of that particular custom element.</p>
+
+<pre><code class="javascript">     var XLoader = document.registerElement( 'x-loader' );
+     var xloader = new XLoader();
+
+     document.body.appendChild( xloader );
+</code></pre>
+
+<p>You can also use <code>document.createElement</code> to instantiate the custom element, same as native HTML element.</p>
+
+<pre><code class="javascript">     document.registerElement( 'google-analytics' );
+     var googleAnalytics = document.createElement( 'google-analytics' );
+
+     document.body.appendChild( googleAnalytics );
+</code></pre>
+
+<p>Above are two ways to instantiate element in JavaScript, you can also instantiate custom element in HTML, just use tag wherever you want in the document.</p>
+
+<pre><code class="html">     &lt;facebook-like-button&gt;&lt;/facebook-like-button&gt;
+     &lt;facebook-share-button&gt;&lt;/facebook-share-button&gt;
+</code></pre>
+
+<h2>3. Adding Behavior</h2>
+
+<p>We learned how to define and use a custom element, lets learn how we can add features to these elements. Following codepen shows demo of <em>&lt;drop-down&gt;</em> custom element which is almost similar to <a href="http://getbootstrap.com/components/#dropdowns">one in bootstrap</a>.</p>
+
+<div data-height="268" data-theme-id="6499" data-slug-hash="qEqVKx" data-default-tab="html" data-user="shree33" class='codepen'>
+<p>See the Pen <a href='http://codepen.io/shree33/pen/qEqVKx/'>Drop-down - Custom Element</a> by Shridhar Deshmukh (<a href='http://codepen.io/shree33'>@shree33</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+</div>
+
+
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+
+<p>Above HTML is only markup that you need to write to create drop-down like menu, without writing any javascript. The drop-down element knows how to handle the user interactions such as click, this is defined as behavior for the element while registering the element.</p>
+
+<p>If you check the JavaScript in above codepen, you will notice that I have created a prototype object and passed it to <code>document.registerElement</code>. Prototype object is place where you can bundle tailored functionality of element by defining properties and methods.<br/>
+I first created empty prototype object from HTMLElement, which will include feature set from HTMLElement in its prototype chain. Later I defined what should happen when the element gets created, using <code>createCallback</code>. Finally passed this prototype object to <code>document.registerElement</code> while registering the element. Once the element gets created, <code>createdCallback</code> is lifecycle method of custom element which will be called and click event listener will be added on button. There are other lifecycle methods that gets called during different phases of element&rsquo;s life.</p>
+
+<h3>Lifecycle Callbacks</h3>
+
+<p>The callback methods are special methods that gets called when certain events happen on element. Following is list of lifecycle callback methods.</p>
+
+<table class="this">
+     <thead>
+          <tr>
+               <td> Callback method </td>
+               <td> Element&#8217;s Life Phase </td>
+          </tr>
+     </thead>
+     <tbody>
+          <tr>
+               <td> createdCallback </td>
+               <td> an instance of the element is created </td>
+          </tr>
+          <tr>
+               <td> attachedCallback </td>
+               <td> an instance was inserted into the document </td>
+          </tr>
+          <tr>
+               <td> detachedCallback </td>
+               <td> an instance was removed from the document </td>
+          </tr>
+          <tr>
+               <td> attributeChangedCallback </td>
+               <td> an attribute was added, removed, or updated </td>
+          </tr>
+     </tbody>
+</table>
+
+
+<h2>4. Inheriting native elements</h2>
+
+<p>Custom element can extend native HTML element&rsquo;s features or features of other existing custom element. The custom element which extends native HTML elements called type extension custom element. To extend one of the native element we define new element which inherits the prototype of that native element and extends the tag name of that element.</p>
+
+<pre><code class="javascript">     var SortableTable = document.registerElement( 'sortable-table', {
+          prototype: Object.create(HTMLTableElement.prototype),
+          extends: 'table'
+     });
+</code></pre>
+
+<p>Above code block extends native <em>&lt;table&gt;</em> element, to do so it extends the <code>table</code> tag, also its prototype is based on <code>HTMLTableElement</code> and not the <code>HTMLElement</code>. By doing so you have extended APIs on top of basic <em>&lt;table&gt;</em> element&rsquo;s features. To use this custom element, we just create the original tag element and specify custom tag name using <code>is</code> attribute.</p>
+
+<pre><code class="html">     &lt;table is="sortable-table"&gt; &lt;/table&gt;
+</code></pre>
+
+<h2>5. Browser Support</h2>
+
+<p>Browser support of Custom Element is still in early days, currently supported by Chrome and Opera. Firefox by default it disabled, you can enable through <code>dom.webcomponents.enabled</code> preference in <code>about:config</code>. You can also check the updated browser support on <a href="http://caniuse.com/#feat=custom-elements">caniuse.com</a>. For other browsers you can use <a href="http://webcomponents.org/polyfills/">pollyfill</a> library <a href="https://github.com/webcomponents/webcomponentsjs/blob/master/webcomponents.js">webcomponents.js</a>.</p>
+
+<h2>6. Semantics</h2>
+
+<p>Custom elements has no special meaning at all,conveys similar amount of semantics as a HTML <em>&lt;div&gt;</em> and <em>&lt;span&gt;</em> element, but for semantics to be formally expressed, developers must convey the same using <a href="http://w3c.github.io/aria/aria/aria.html#usage_intro">ARIA rules</a>, <a href="http://w3c.github.io/aria/aria/aria.html#introstates">states and properties</a>. But type extension custom elements inherits the semantics of the element type it extends.</p>
+
+<h2>Conclusion</h2>
+
+<p>Custom Elements are true HTML elements, they come with many advantages such as</p>
+
+<ul>
+<li>Encapsulation - Encapsulate internal details of component</li>
+<li>Reusability - a component can be reused at multiple places, hence increase in productivity</li>
+<li>Inheritance - inherits the properties and features from existing HTML elements</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Talk - Polymer JS @ XConf Bangalore]]></title>
-    <link href="http://Shridhad.github.io/blog/2014/11/24/talk-polymer-js-xconfblr/"/>
+    <link href="http://shridhad.github.io/blog/2014/11/24/talk-polymer-js-xconfblr/"/>
     <updated>2014-11-24T23:59:58+05:30</updated>
-    <id>http://Shridhad.github.io/blog/2014/11/24/talk-polymer-js-xconfblr</id>
+    <id>http://shridhad.github.io/blog/2014/11/24/talk-polymer-js-xconfblr</id>
     <content type="html"><![CDATA[<p>Polymer provides a way to do web development based on encapsulated custom elements. Its uses Shadow DOM for encapsulating content of element and we get scoped styles. Also polymer makes the custom elements totally interoperable with x-tags and vanilla custom elements.</p>
 
 <!-- more -->
@@ -26,13 +177,12 @@
 <p>Polymer also comes with some predefined and general purpose custom elements. Polymer has categorized these new elements into core and paper elements:</p>
 
 <ol>
-<li>Core Elements &ndash; Core elements include things like icons, layout elements, toolbars and also non-ui elements like ajax, local-storage.</li>
-<li>Paper Elements &ndash; implements material design system.</li>
+<li>Core Elements - Core elements include things like icons, layout elements, toolbars and also non-ui elements like ajax, local-storage.</li>
+<li>Paper Elements - implements material design system.</li>
 </ol>
 
 
-<br>Polymer is primarily built on 4 pillars of web components:
-
+<p><br>Polymer is primarily built on 4 pillars of web components:</p>
 
 <ol>
 <li>Custom Elements</li>
@@ -42,11 +192,10 @@
 </ol>
 
 
-<br>Here is my talk at XConf, ThoughtWorks Bangalore on 22 Nov, 2014.
-
+<p><br>Here is my talk at XConf, ThoughtWorks Bangalore on 22 Nov, 2014.</p>
 
 <div class="speakerdeck">
-<script async class="speakerdeck-embed" style="width:90%" data-id="a3c541505633013284a82208fcc66d6d" data-ratio="1.33333333333333" src="http://Shridhad.github.io//speakerdeck.com/assets/embed.js"></script>
+<script async class="speakerdeck-embed" style="width:90%" data-id="a3c541505633013284a82208fcc66d6d" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 </div>
 
 ]]></content>
@@ -54,14 +203,14 @@
   
   <entry>
     <title type="html"><![CDATA[HTML Imports]]></title>
-    <link href="http://Shridhad.github.io/blog/2014/11/16/html-imports/"/>
+    <link href="http://shridhad.github.io/blog/2014/11/16/html-imports/"/>
     <updated>2014-11-16T14:01:31+05:30</updated>
-    <id>http://Shridhad.github.io/blog/2014/11/16/html-imports</id>
+    <id>http://shridhad.github.io/blog/2014/11/16/html-imports</id>
     <content type="html"><![CDATA[<p>HTML Imports (or simply imports) is one of the piece from <a href="http://webcomponents.org/">Web Components</a> model, which allows you to load full external html document into your web page and that too without ajax. Imports provide convention for bundling HTML/CSS/JS into single deliverable component. Using imports you can create custom elements and then use them as new tags in your master document.</p>
 
 <p> <!-- more --></p>
 
-<p><blockquote><p>HTML Imports are a way to include and reuse HTML documents in other HTML documents.</p><footer><strong>HTML Imports &ndash;  <a href="http://www.w3.org/TR/html-imports/#abstract">http://www.w3.org/TR/html-imports/#abstract</a> W3C Working Draft</strong></footer></blockquote></p>
+<p><blockquote><p>HTML Imports are a way to include and reuse HTML documents in other HTML documents.</p><footer><strong>HTML Imports -  <a href="http://www.w3.org/TR/html-imports/#abstract">http://www.w3.org/TR/html-imports/#abstract</a> W3C Working Draft</strong></footer></blockquote></p>
 
 <p>We will learn how to use HTML imports in projects, and also how we can use them with <code>&lt;template&gt;</code> to create dynamic web pages.</p>
 
@@ -75,115 +224,89 @@
 </ol>
 
 
-<br />
-
+<p><br /></p>
 
 <h2>1. The Lowdown</h2>
 
 <p>Include an import in your document using <code>&lt;link rel="import"&gt;</code>. Yes, it is a just link tag, with new value for <code>rel</code> attribute.</p>
 
-<p>```html</p>
-
-<pre><code>&lt;head&gt;
-    &lt;link rel="import" href="path/to/import.html"&gt;
-&lt;/head&gt;
+<pre><code class="html">    &lt;head&gt;
+        &lt;link rel="import" href="path/to/import.html"&gt;
+    &lt;/head&gt;
 </code></pre>
-
-<p>```</p>
 
 <p>The referred url to imported document is an import location. For security reasons HTML imports adhere to <code>same-origin</code> policy. The import from another domain, the import location needs to be CORS set up correctly.</p>
 
-<p>```html</p>
-
-<pre><code>&lt;!-- Cross domain resources must be set up properly. --&gt;
-&lt;link rel="import" href="http://example.com/elements.html"&gt;
+<pre><code class="html">    &lt;!-- Cross domain resources must be set up properly. --&gt;
+    &lt;link rel="import" href="http://example.com/elements.html"&gt;
 </code></pre>
 
-<p>```</p>
-
-<br />
-
+<p><br /></p>
 
 <h2>2. Using the content</h2>
 
 <p>Importing external html doesn&rsquo;t pop the content of external document in the current document, it just fetches the content, parses it and makes it available for use.
 You have to use the content by writing script, and you can access the content by examining the <code>import</code> property of corresponding link element.</p>
 
-<p><code>javascript
-  var content = document.querySelector( 'link[rel="import"]' ).import;
-</code></p>
+<pre><code class="javascript">  var content = document.querySelector( 'link[rel="import"]' ).import;
+</code></pre>
 
 <p>Now as you have imported the external document, you can grab a specific portion of imported document and clone it to your page. Here is a <a href="http://shridhad.github.io/html5demos/htmlImport/message.html">Demo</a>.</p>
 
-<p>``` javascript</p>
+<pre><code class="javascript">    var content = document.querySelector( 'link[rel="import"]' ).import;
 
-<pre><code>var content = document.querySelector( 'link[rel="import"]' ).import;
+    var el = content.querySelector( ".warning" );
 
-var el = content.querySelector( ".warning" );
-
-document.body.appendChild( el.cloneNode(true) );
+    document.body.appendChild( el.cloneNode(true) );
 </code></pre>
-
-<p>```</p>
 
 <h2>3. Imports and Templates</h2>
 
 <p>Now you understand how to import external document and access its content, now lets look at how you can use this technology with <code>&lt;template&gt;</code> element.</p>
 
-<p>Let&rsquo;s say that we are building a todo app and want a component that displays a todo item with a small description. Let&rsquo;s create a template that is responsible for displaying a todo item. Store this template in separate HTML file &ndash; <code>template.html</code>.</p>
+<p>Let&rsquo;s say that we are building a todo app and want a component that displays a todo item with a small description. Let&rsquo;s create a template that is responsible for displaying a todo item. Store this template in separate HTML file - <code>template.html</code>.</p>
 
-<p>``` html
-<template id="todo-item-template">
-  <div class="todo-item"></p>
-
-<pre><code>&lt;h2 class="title"&gt;{{ title }}&lt;/h2&gt;
-&lt;p class="description"&gt;{{ description }}&lt;/p&gt;
+<pre><code class="html">&lt;template id="todo-item-template"&gt;
+  &lt;div class="todo-item"&gt;
+    &lt;h2 class="title"&gt;{{ title }}&lt;/h2&gt;
+    &lt;p class="description"&gt;{{ description }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt; 
 </code></pre>
-
-<p>  </div>
-</template> 
-```</p>
 
 <p>I am using <a href="underscorejs.org">underscore.js</a> for templating. Also I have changed the interpolate setting using <code>_.templateSettings</code>.</p>
 
-<p>Next we need to import this template into our main document &ndash; <code>index.html</code>. Just add an <code>&lt;link&gt;</code> tag with <code>rel="import"</code>  attribute and href pointing to <code>template.html</code>. Lets also add and <code>id</code> attribute to tag this element that will help us to reference the element using JavaScript.</p>
+<p>Next we need to import this template into our main document - <code>index.html</code>. Just add an <code>&lt;link&gt;</code> tag with <code>rel="import"</code>  attribute and href pointing to <code>template.html</code>. Lets also add and <code>id</code> attribute to tag this element that will help us to reference the element using JavaScript.</p>
 
-<p>``` html
-  <head></p>
-
-<pre><code>&lt;link rel="import" href="template.html" id="import-template"&gt;
+<pre><code class="html">  &lt;head&gt;
+    &lt;link rel="import" href="template.html" id="import-template"&gt;
+  &lt;/head&gt;
 </code></pre>
-
-<p>  </head>
-```</p>
 
 <p>Now is the time write some script and stamp out the todo template.</p>
 
 <p>First of all, get the import link element and then use <code>import</code> property on that element to access the content of imported document.</p>
 
-<p><code>javascript
-  var templatesImport = document.querySelector( "#import-template" );
+<pre><code class="javascript">  var templatesImport = document.querySelector( "#import-template" );
   var importContent = templatesImport.import;
-</code></p>
+</code></pre>
 
 <p>Next find the template element and then access the content that we need to clone, i.e. <code>.todo-item</code> element.</p>
 
-<p><code>javascript
-  var template = importContent.querySelector( "#todo-item-template" );
+<pre><code class="javascript">  var template = importContent.querySelector( "#todo-item-template" );
   var todoItem = template.content.querySelector( ".todo-item" );
-</code></p>
+</code></pre>
 
 <p>Now let&rsquo;s use underscore.js to compile our template with JSON and then append the newly create dom element into main document.</p>
 
-<p>``` javascript
-  var json = {&ldquo;title&rdquo;: &ldquo;Todo Title&rdquo;, &ldquo;description&rdquo;: &ldquo;Todo Description&rdquo;};</p>
+<pre><code class="javascript">  var json = {"title": "Todo Title", "description": "Todo Description"};
 
-<p>  var <em>template = </em>.template( content.outerHTML );
-  var <em>dom = </em>template( json );</p>
+  var _template = _.template( content.outerHTML );
+  var _dom = _template( json );
 
-<p>  var todoItems = document.querySelector( &ldquo;#todo-items&rdquo; );
+  var todoItems = document.querySelector( "#todo-items" );
   todoItems.appendChild( _dom.toDOM() );
-```</p>
+</code></pre>
 
 <p><code>_template</code> is function that underscore return after compiling html template. <code>_dom</code> is actual html snippet that we will render in main document. <a href="https://gist.github.com/Shridhad/822e629e952c9af8c8af"><code>_toDOM</code></a> is function on String which converts the string into dom element so that you can append it as child.
 Here is <a href="http://shridhad.github.io/html5demos/htmlImport/">Demo</a>.</p>
@@ -191,7 +314,7 @@ Here is <a href="http://shridhad.github.io/html5demos/htmlImport/">Demo</a>.</p>
 <p data-height="339" data-theme-id="6499" data-slug-hash="dPygYx" data-default-tab="result" data-user="shree33" class='codepen'>See the Pen <a href='http://codepen.io/shree33/pen/dPygYx/'>HTML Imports</a> by Shridhar Deshmukh (<a href='http://codepen.io/shree33'>@shree33</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
 
-<script async src="http://Shridhad.github.io//assets.codepen.io/assets/embed/ei.js"></script>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 
 <p>That&rsquo;s it! You got your first todo item and now you also know how to use HTML imports and template together to create dynamic pages.</p>
@@ -200,26 +323,16 @@ Here is <a href="http://shridhad.github.io/html5demos/htmlImport/">Demo</a>.</p>
 
 <p>Browser support is still in the early days. Before using the feature, you can check to see if the user&rsquo;s browser supports HTML imports by looking for the <code>import</code> property on <code>&lt;link&gt;</code> element.</p>
 
-<p>``` javascript
-  function supportsImports() {</p>
+<pre><code class="javascript">  function supportsImports() {
+    return 'import' in document.createElement( 'link' );
+  }
 
-<pre><code>return 'import' in document.createElement( 'link' );
+  if ( supportsImports() ) {
+    // Good to go!
+  } else {
+    // Use other libraries/require systems to load files.
+  }
 </code></pre>
-
-<p>  }</p>
-
-<p>  if ( supportsImports() ) {</p>
-
-<pre><code>// Good to go!
-</code></pre>
-
-<p>  } else {</p>
-
-<pre><code>// Use other libraries/require systems to load files.
-</code></pre>
-
-<p>  }
-```</p>
 
 <p>You can also keep checking <a href="http://caniuse.com/#feat=imports">caniuse.com</a> for browser support.</p>
 ]]></content>

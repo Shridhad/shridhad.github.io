@@ -1,0 +1,462 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Custom Elements - Shridhar Deshmukh</title>
+  <meta name="author" content="Shridhar Deshmukh">
+
+  
+  <meta name="description" content="HTML Imports are a way to include and reuse HTML documents in other HTML documents.">
+  <meta name="keywords" content="custom elements, custom html tags, type extension custom elements, web components, shridhar, deshmukh, shridhar deshmukh">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://shridhad.github.io/blog/2015/01/06/custom-elements">
+  <link href="/images/shree.png" rel="shortcut icon" type="image/png">
+  <link href="/images/shree.png" rel="icon" type="image/png">
+  <link href="/stylesheets/style.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300italic,400italic,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,500,300,600,700' rel='stylesheet' type='text/css'>
+
+  <link href="/atom.xml" rel="alternate" title="Shridhar Deshmukh" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-48109674-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+    <div class="page-wrapper">
+        <header class="main-header" role="banner">
+            <div class="container">
+    <a class="logo" href="/" title="Shridhar Deshmukh"> Shridhar Deshmukh </a>
+    <nav role="navigation" class="main-menu">
+        <div class="menu-icon text-center">
+            <a class="fa fa-bars"></a>
+        </div>
+        <ul class="main">
+            <li>
+                <a href="/"> Blog </a>
+            </li>
+            <li>
+                <a href="/blog/archives"> Archives </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <nav role="navigation" class="about-menu">
+        <ul class="about text-center st-multi-color st-shape-r5">
+            
+            <li>
+                <a class="fa fa-twitter" target="_blank" href="https://twitter.com/_shree33" title="Twitter"></a>
+            </li>
+            
+            
+            <li>
+                <a class="fa fa-github" target="_blank" href="https://github.com/shridhad" title="Github"></a>
+            </li>
+            
+            
+            <li>
+                <a class="fa fa-codepen" target="_blank" href="https://codepen.io/shree33" title="Codepen"></a>
+            </li>
+            
+        </ul>
+    </nav>
+    
+</div>
+
+        </header>
+        <div class="container">
+            <div class="inner-container">
+                <div id="post">
+
+<article>
+    <div class="title">
+        
+            <h1>
+                
+                    Custom Elements
+                
+            </h1>
+        
+    </div>
+
+    <div class="content">
+        
+            <div class="entry-content"><p>Custom Elements, one of the most important spec under web components umbrella, enables web developer to define new types of HTMLElement, which can have it&rsquo;s own markup(HTML), behavior(JS) and style(CSS). These newly created custom HTML tags can be reused as complex components in multiple websites and web apps.</p>
+
+<!-- more -->
+
+
+
+
+<blockquote><p>Provide a way for web developers to build their own, full-featured DOM elements.</p><footer><strong>Custom Elements Motivation -</strong> <cite><a href='http://w3c.github.io/webcomponents/spec/custom/#motivations'>W3C Editor&#8217;s Draft</a></cite></footer></blockquote>
+
+
+<h2>Table of Content</h2>
+
+<ol>
+<li>Registration and Definition</li>
+<li>Imperative Usage</li>
+<li>Adding Behavior</li>
+<li>Inheriting native elements</li>
+<li>Browser Support</li>
+<li>Semantics</li>
+</ol>
+
+
+<p><br /></p>
+
+<h2>1. Registration and Definition</h2>
+
+<p>Custom Elements specification defines a programmatic way to define and register a custom element, using <code>document.registerElement</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'> <span class="kd">var</span> <span class="nx">CustomElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;custom-element&#39;</span> <span class="p">);</span>
+</span><span class='line'> <span class="kd">var</span> <span class="nx">XLoader</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;x-loader&#39;</span> <span class="p">);</span>
+</span><span class='line'> <span class="kd">var</span> <span class="nx">GoogleAnalytics</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;google-analytics&#39;</span> <span class="p">);</span>
+</span><span class='line'> <span class="kd">var</span> <span class="nx">DropDown</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;drop-down&#39;</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>document.registerElement</code> takes 2 arguments. The first argument is custom element&rsquo;s tag name. Whereas second argument is a object which holds the prototype object which defines feature set for that custom element. <code>document.registerElement</code> returns a constructor that can be used to create instances of custom element. There are other ways of instantiating elements, we will talk about them in a while.</p>
+
+<h3>Naming Rules</h3>
+
+<p>The tag name must contain at least one dash(-). Failing to do so will result in error and element won&rsquo;t be created. For example, <em>&lt;x-loader&gt;, &lt;my-app&gt;, &lt;awesome-progress-bar&gt;</em> are all valid names, whereas <em>&lt;loader&gt;, &lt;component&gt;</em> are not. Any uppercase letter specified in tag name will be converted to lowercase.</p>
+
+<h2>2. Imperative Usage</h2>
+
+<p>As I mentioned above <code>document.registerElement</code> returns a constructor that can be used to create the instances of that particular custom element.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'> <span class="kd">var</span> <span class="nx">XLoader</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;x-loader&#39;</span> <span class="p">);</span>
+</span><span class='line'> <span class="kd">var</span> <span class="nx">xloader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XLoader</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">xloader</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can also use <code>document.createElement</code> to instantiate the custom element, same as native HTML element.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;google-analytics&#39;</span> <span class="p">);</span>
+</span><span class='line'> <span class="kd">var</span> <span class="nx">googleAnalytics</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span> <span class="s1">&#39;google-analytics&#39;</span> <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">googleAnalytics</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Above are two ways to instantiate element in JavaScript, you can also instantiate custom element in HTML, just use tag wherever you want in the document.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'> <span class="nt">&lt;facebook-like-button&gt;&lt;/facebook-like-button&gt;</span>
+</span><span class='line'> <span class="nt">&lt;facebook-share-button&gt;&lt;/facebook-share-button&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. Adding Behavior</h2>
+
+<p>We learned how to define and use a custom element, lets learn how we can add features to these elements. Following codepen shows demo of <em>&lt;drop-down&gt;</em> custom element which is almost similar to <a href="http://getbootstrap.com/components/#dropdowns">one in bootstrap</a>.</p>
+
+<div data-height="268" data-theme-id="6499" data-slug-hash="qEqVKx" data-default-tab="html" data-user="shree33" class='codepen'>
+<p>See the Pen <a href='http://codepen.io/shree33/pen/qEqVKx/'>Drop-down - Custom Element</a> by Shridhar Deshmukh (<a href='http://codepen.io/shree33'>@shree33</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+</div>
+
+
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+
+<p>Above HTML is only markup that you need to write to create drop-down like menu, without writing any javascript. The drop-down element knows how to handle the user interactions such as click, this is defined as behavior for the element while registering the element.</p>
+
+<p>If you check the JavaScript in above codepen, you will notice that I have created a prototype object and passed it to <code>document.registerElement</code>. Prototype object is place where you can bundle tailored functionality of element by defining properties and methods.<br/>
+I first created empty prototype object from HTMLElement, which will include feature set from HTMLElement in its prototype chain. Later I defined what should happen when the element gets created, using <code>createCallback</code>. Finally passed this prototype object to <code>document.registerElement</code> while registering the element. Once the element gets created, <code>createdCallback</code> is lifecycle method of custom element which will be called and click event listener will be added on button. There are other lifecycle methods that gets called during different phases of element&rsquo;s life.</p>
+
+<h3>Lifecycle Callbacks</h3>
+
+<p>The callback methods are special methods that gets called when certain events happen on element. Following is list of lifecycle callback methods.</p>
+
+<table class="this">
+     <thead>
+          <tr>
+               <td> Callback method </td>
+               <td> Element&#8217;s Life Phase </td>
+          </tr>
+     </thead>
+     <tbody>
+          <tr>
+               <td> createdCallback </td>
+               <td> an instance of the element is created </td>
+          </tr>
+          <tr>
+               <td> attachedCallback </td>
+               <td> an instance was inserted into the document </td>
+          </tr>
+          <tr>
+               <td> detachedCallback </td>
+               <td> an instance was removed from the document </td>
+          </tr>
+          <tr>
+               <td> attributeChangedCallback </td>
+               <td> an attribute was added, removed, or updated </td>
+          </tr>
+     </tbody>
+</table>
+
+
+<h2>4. Inheriting native elements</h2>
+
+<p>Custom element can extend native HTML element&rsquo;s features or features of other existing custom element. The custom element which extends native HTML elements called type extension custom element. To extend one of the native element we define new element which inherits the prototype of that native element and extends the tag name of that element.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'> <span class="kd">var</span> <span class="nx">SortableTable</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">registerElement</span><span class="p">(</span> <span class="s1">&#39;sortable-table&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">prototype</span><span class="o">:</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HTMLTableElement</span><span class="p">.</span><span class="nx">prototype</span><span class="p">),</span>
+</span><span class='line'>      <span class="kr">extends</span><span class="o">:</span> <span class="s1">&#39;table&#39;</span>
+</span><span class='line'> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Above code block extends native <em>&lt;table&gt;</em> element, to do so it extends the <code>table</code> tag, also its prototype is based on <code>HTMLTableElement</code> and not the <code>HTMLElement</code>. By doing so you have extended APIs on top of basic <em>&lt;table&gt;</em> element&rsquo;s features. To use this custom element, we just create the original tag element and specify custom tag name using <code>is</code> attribute.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'> <span class="nt">&lt;table</span> <span class="na">is=</span><span class="s">&quot;sortable-table&quot;</span><span class="nt">&gt;</span> <span class="nt">&lt;/table&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>5. Browser Support</h2>
+
+<p>Browser support of Custom Element is still in early days, currently supported by Chrome and Opera. Firefox by default it disabled, you can enable through <code>dom.webcomponents.enabled</code> preference in <code>about:config</code>. You can also check the updated browser support on <a href="http://caniuse.com/#feat=custom-elements">caniuse.com</a>. For other browsers you can use <a href="http://webcomponents.org/polyfills/">pollyfill</a> library <a href="https://github.com/webcomponents/webcomponentsjs/blob/master/webcomponents.js">webcomponents.js</a>.</p>
+
+<h2>6. Semantics</h2>
+
+<p>Custom elements has no special meaning at all,conveys similar amount of semantics as a HTML <em>&lt;div&gt;</em> and <em>&lt;span&gt;</em> element, but for semantics to be formally expressed, developers must convey the same using <a href="http://w3c.github.io/aria/aria/aria.html#usage_intro">ARIA rules</a>, <a href="http://w3c.github.io/aria/aria/aria.html#introstates">states and properties</a>. But type extension custom elements inherits the semantics of the element type it extends.</p>
+
+<h2>Conclusion</h2>
+
+<p>Custom Elements are true HTML elements, they come with many advantages such as</p>
+
+<ul>
+<li>Encapsulation - Encapsulate internal details of component</li>
+<li>Reusability - a component can be reused at multiple places, hence increase in productivity</li>
+<li>Inheritance - inherits the properties and features from existing HTML elements</li>
+</ul>
+
+</div>
+        
+        
+            <p class="footer">
+                
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-06T07:15:57+05:30"  data-updated="true"  > </time>
+            </p>
+        
+        
+            <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://shridhad.github.io/blog/2015/01/06/custom-elements/" data-via="_shree33">Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-href="http://shridhad.github.io/blog/2015/01/06/custom-elements/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+  
+</div>
+
+        
+    </div>
+
+</article>
+
+
+  <section id="disqus">
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+<div id="side-menu" class="sidebar hide">
+    <div class="menu-button">
+        <span class="menu-text">Menu</span>
+        <span class="menu-icon fa fa-bars fa-close"></span>
+    </div>
+    <div class="side-bar-content">
+        <section>
+  <h3>Recent Posts</h3>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/06/custom-elements/">Custom Elements</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/24/talk-polymer-js-xconfblr/">Talk - Polymer JS @ XConf Bangalore</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/html-imports/">HTML Imports</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/27/what-is-this/">What Is `this`?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/15/jjsonviewer-jquery-plugin/">jJsonViewer - jQuery Plugin</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/12/stop-repeating-event-dot-preventdefault/">Stop Repeating event.preventDefault()</a>
+      </li>
+    
+  </ul>
+</section>
+
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <footer class="main-footer">
+    <div class="container fun">
+        <div class="column">
+            <div class="number">0</div>
+            <div class="description">Late nights this month</div>
+        </div>
+        <div class="column">
+            <div class="number">2</div>
+            <div class="description">Cans of Coke Max consumed within 24 hours</div>
+        </div>
+        <div class="column">
+            <div class="number">2</div>
+            <div class="description">Days off this year!</div>
+        </div>
+    </div>
+    <div class="about container">
+        <div class="column aboutsite">
+            <p>This site is personal portfolio of developer - Shridhar Deshmukh.</p>
+            <p>Showcasing UI and interactive work, as well as worthless nonsense.</p>
+        </div>
+        <div class="column"></div>
+        <div class="column copyright">
+            <p>Copyright &copy; 2015 - Shridhar Deshmukh </p>
+            <p>- <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span></p>
+        </div>
+    </div>
+</footer>
+
+
+
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'shridhad';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://shridhad.github.io/blog/2015/01/06/custom-elements/';
+        var disqus_url = 'http://shridhad.github.io/blog/2015/01/06/custom-elements/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+    window.twttr=(function(d,s,id) {
+        var t,js,fjs=d.getElementsByTagName(s)[0];
+        if(d.getElementById(id)) {return}
+        js=d.createElement(s);
+        js.id=id;
+        js.src="https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js,fjs);
+        return window.twttr
+                || (t={_e:[],ready:function(f){
+                    t._e.push(f)}})
+    }(document,"script","twitter-wjs"));
+</script>
+
+
+
+
+<script src="/javascripts/libs/jquery.shuffle.js" type="text/javascript"></script>
+<script src="/javascripts/sidebar.js" type="text/javascript"></script>
+<script src="/javascripts/archives.js" type="text/javascript"></script>
+
+</body>
+</html>
