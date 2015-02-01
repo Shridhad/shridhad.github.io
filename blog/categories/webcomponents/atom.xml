@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Webcomponents | Shridhar Deshmukh]]></title>
   <link href="http://shridhad.github.io/blog/categories/webcomponents/atom.xml" rel="self"/>
   <link href="http://shridhad.github.io/"/>
-  <updated>2015-01-06T23:06:00+05:30</updated>
+  <updated>2015-01-31T21:37:45-08:00</updated>
   <id>http://shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Custom Elements]]></title>
-    <link href="http://shridhad.github.io/blog/2015/01/06/custom-elements/"/>
-    <updated>2015-01-06T07:15:57+05:30</updated>
-    <id>http://shridhad.github.io/blog/2015/01/06/custom-elements</id>
+    <link href="http://shridhad.github.io/blog/2015/01/05/custom-elements/"/>
+    <updated>2015-01-05T17:45:57-08:00</updated>
+    <id>http://shridhad.github.io/blog/2015/01/05/custom-elements</id>
     <content type="html"><![CDATA[<p>Custom Elements, one of the most important spec under web components umbrella, enables web developer to define new types of HTMLElement, which can have it&rsquo;s own markup(HTML), behavior(JS) and style(CSS). These newly created custom HTML tags can be reused as complex components in multiple websites and web apps.</p>
 
 <!-- more -->
@@ -167,7 +167,7 @@ I first created empty prototype object from HTMLElement, which will include feat
   <entry>
     <title type="html"><![CDATA[Talk - Polymer JS @ XConf Bangalore]]></title>
     <link href="http://shridhad.github.io/blog/2014/11/24/talk-polymer-js-xconfblr/"/>
-    <updated>2014-11-24T23:59:58+05:30</updated>
+    <updated>2014-11-24T10:29:58-08:00</updated>
     <id>http://shridhad.github.io/blog/2014/11/24/talk-polymer-js-xconfblr</id>
     <content type="html"><![CDATA[<p>Polymer provides a way to do web development based on encapsulated custom elements. Its uses Shadow DOM for encapsulating content of element and we get scoped styles. Also polymer makes the custom elements totally interoperable with x-tags and vanilla custom elements.</p>
 
@@ -204,7 +204,7 @@ I first created empty prototype object from HTMLElement, which will include feat
   <entry>
     <title type="html"><![CDATA[HTML Imports]]></title>
     <link href="http://shridhad.github.io/blog/2014/11/16/html-imports/"/>
-    <updated>2014-11-16T14:01:31+05:30</updated>
+    <updated>2014-11-16T00:31:31-08:00</updated>
     <id>http://shridhad.github.io/blog/2014/11/16/html-imports</id>
     <content type="html"><![CDATA[<p>HTML Imports (or simply imports) is one of the piece from <a href="http://webcomponents.org/">Web Components</a> model, which allows you to load full external html document into your web page and that too without ajax. Imports provide convention for bundling HTML/CSS/JS into single deliverable component. Using imports you can create custom elements and then use them as new tags in your master document.</p>
 
@@ -274,7 +274,7 @@ You have to use the content by writing script, and you can access the content by
 &lt;/template&gt; 
 </code></pre>
 
-<p>I am using <a href="underscorejs.org">underscore.js</a> for templating. Also I have changed the interpolate setting using <code>_.templateSettings</code>.</p>
+<p>I am using <a href="http://underscorejs.org">underscore.js</a> for templating. Also I have changed the interpolate setting using <code>_.templateSettings</code>.</p>
 
 <p>Next we need to import this template into our main document - <code>index.html</code>. Just add an <code>&lt;link&gt;</code> tag with <code>rel="import"</code>  attribute and href pointing to <code>template.html</code>. Lets also add and <code>id</code> attribute to tag this element that will help us to reference the element using JavaScript.</p>
 

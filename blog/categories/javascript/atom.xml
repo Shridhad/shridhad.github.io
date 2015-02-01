@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javascript | Shridhar Deshmukh]]></title>
   <link href="http://shridhad.github.io/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://shridhad.github.io/"/>
-  <updated>2015-01-06T23:06:00+05:30</updated>
+  <updated>2015-01-31T21:37:45-08:00</updated>
   <id>http://shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[What Is `this`?]]></title>
-    <link href="http://shridhad.github.io/blog/2014/06/27/what-is-this/"/>
-    <updated>2014-06-27T08:27:26+05:30</updated>
-    <id>http://shridhad.github.io/blog/2014/06/27/what-is-this</id>
+    <link href="http://shridhad.github.io/blog/2014/06/26/what-is-this/"/>
+    <updated>2014-06-26T19:57:26-07:00</updated>
+    <id>http://shridhad.github.io/blog/2014/06/26/what-is-this</id>
     <content type="html"><![CDATA[<p>The most powerful keyword in JavaScript is <code>this</code> and many people get tripped by it. People expect it to work like <code>this</code> in Java, but understand that JavaScript is not Java.
 Unfortunately understanding behavior of <code>this</code> is little harder if you are new to JavaScript, but certainly its not a magic. And as you start getting to used to <code>this</code>, its rule are actually very simple.</p>
 
@@ -227,7 +227,7 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
   <entry>
     <title type="html"><![CDATA[jJsonViewer - jQuery Plugin]]></title>
     <link href="http://shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin/"/>
-    <updated>2014-02-15T18:40:08+05:30</updated>
+    <updated>2014-02-15T05:10:08-08:00</updated>
     <id>http://shridhad.github.io/blog/2014/02/15/jjsonviewer-jquery-plugin</id>
     <content type="html"><![CDATA[<p><link href="http://shridhad.github.io/jjsonviewer/css/jjsonviewer.css" rel="stylesheet" type="text/css">
 <a href="https://github.com/Shridhad/jjsonviewer">View on Github</a></p>
@@ -295,9 +295,9 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
   
   <entry>
     <title type="html"><![CDATA[Stop Repeating event.preventDefault()]]></title>
-    <link href="http://shridhad.github.io/blog/2014/01/12/stop-repeating-event-dot-preventdefault/"/>
-    <updated>2014-01-12T10:29:02+05:30</updated>
-    <id>http://shridhad.github.io/blog/2014/01/12/stop-repeating-event-dot-preventdefault</id>
+    <link href="http://shridhad.github.io/blog/2014/01/11/stop-repeating-event-dot-preventdefault/"/>
+    <updated>2014-01-11T20:59:02-08:00</updated>
+    <id>http://shridhad.github.io/blog/2014/01/11/stop-repeating-event-dot-preventdefault</id>
     <content type="html"><![CDATA[<p>If you end up repeating <code>event.preventDefault();</code>  in all/most of your event handlers, then you can stop yourself by using decorator over your actual event handlers.</p>
 
 <!-- more -->
