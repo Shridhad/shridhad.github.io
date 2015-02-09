@@ -138,7 +138,7 @@ And an execution context is a specification device that is used to track the run
 
 <p>All JavaScript runtimes have a unique object called the <code>global object</code>. In browsers, the global object is the <code>window</code> object. When the JavaScript interpreter initially executes code, it first enters into a global execution context by default and <code>this</code> refers to global object which is window.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code javascript'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -160,7 +160,7 @@ And an execution context is a specification device that is used to track the run
 </ul>
 
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code javascript'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -201,7 +201,7 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
 </ul>
 
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code javascript'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -225,7 +225,7 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
 </ul>
 
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code javascript'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -262,7 +262,7 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
 
 <p>When constructing a new object via <code>new</code> operator, JavaScript interpreter creates new empty object, set some properties on it and then call the constructor function on that new object. Thus, in this context the value <code>this</code> is the new object.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code javascript'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -289,7 +289,7 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
 
 <p>When you click on the button, the <code>handler</code> is invoked as method of the button, so <code>this</code> refers to the target element. How that happens is here, when you say <code>$("button").click(handler)</code>, there will be a new copy of <code>handler</code> created and bound to the button using <code>.bind()</code>. This is done by <code>attachEvent/addEventLister</code> method.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code javascript'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>

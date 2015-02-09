@@ -135,7 +135,7 @@
 
 <p>Custom Elements specification defines a programmatic way to define and register a custom element, using <code>document.registerElement</code>.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code javascript'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -156,7 +156,7 @@
 
 <p>As I mentioned above <code>document.registerElement</code> returns a constructor that can be used to create the instances of that particular custom element.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code javascript'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -169,7 +169,7 @@
 
 <p>You can also use <code>document.createElement</code> to instantiate the custom element, same as native HTML element.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code javascript'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -182,7 +182,7 @@
 
 <p>Above are two ways to instantiate element in JavaScript, you can also instantiate custom element in HTML, just use tag wherever you want in the document.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code html'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'> <span class="nt">&lt;facebook-like-button&gt;&lt;/facebook-like-button&gt;</span>
 </span><span class='line'> <span class="nt">&lt;facebook-share-button&gt;&lt;/facebook-share-button&gt;</span>
@@ -242,7 +242,7 @@ I first created empty prototype object from HTMLElement, which will include feat
 
 <p>Custom element can extend native HTML element&rsquo;s features or features of other existing custom element. The custom element which extends native HTML elements called type extension custom element. To extend one of the native element we define new element which inherits the prototype of that native element and extends the tag name of that element.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code javascript'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -255,7 +255,7 @@ I first created empty prototype object from HTMLElement, which will include feat
 
 <p>Above code block extends native <em>&lt;table&gt;</em> element, to do so it extends the <code>table</code> tag, also its prototype is based on <code>HTMLTableElement</code> and not the <code>HTMLElement</code>. By doing so you have extended APIs on top of basic <em>&lt;table&gt;</em> element&rsquo;s features. To use this custom element, we just create the original tag element and specify custom tag name using <code>is</code> attribute.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code html'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'> <span class="nt">&lt;table</span> <span class="na">is=</span><span class="s">&quot;sortable-table&quot;</span><span class="nt">&gt;</span> <span class="nt">&lt;/table&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
