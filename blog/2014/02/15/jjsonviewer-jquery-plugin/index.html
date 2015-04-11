@@ -163,7 +163,7 @@
 </span><span class='line'><span class="s1">        }</span>
 </span><span class='line'><span class="s1">    }&#39;</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#jjson&quot;</span><span class="p">).</span><span class="nx">jJsonViewer</span><span class="p">(</span><span class="nx">jjson</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#jjson&#39;</span><span class="p">).</span><span class="nx">jJsonViewer</span><span class="p">(</span><span class="nx">jjson</span><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -171,19 +171,30 @@
 
 <p>Enjoy collapsing and expanding over each JSON object and array. :)</p>
 
-<div id="jjson"></div>
+<div id='jjson'></div>
 
 
+<h2>Collapsed tree -</h2>
+
+<p>If you want the json tree to be collapsed by default, you can do so by providing `expanded: false&#8217; option.</p>
+
+<figure class='code javascript'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#jjson&#39;</span><span class="p">).</span><span class="nx">jJsonViewer</span><span class="p">(</span><span class="nx">jjson</span><span class="p">,</span> <span class="p">{</span><span class="nx">expanded</span><span class="o">:</span> <span class="kc">false</span><span class="p">}</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<script type="text/javascript" src="http://shridhad.github.io/jjsonviewer/js/jjsonviewer.js"></script>
+<p><em>Demos-</em><br/>
+1. <a href="/jjsonviewer">Expanded Json Tree</a> <br/>
+2. <a href="/jjsonviewer/collapsed.html">Collapsed Json Tree</a></p>
+
+<script type='text/javascript' src='http://shridhad.github.io/jjsonviewer/js/jjsonviewer.js'></script>
 
 
-<script type="text/javascript">
+<script type='text/javascript'>
         $(document).ready(function() {
             var jjson = '{ "name": "jJsonViewer","author": { "name": "Shridhar Deshmukh", "email": "shridhar.deshmukh3@gmail.com", "contact": [{"location": "office", "number": 123456}, {"location": "home", "number": 987654}] } }';
 
-            $("#jjson").jJsonViewer(jjson);
+            $('#jjson').jJsonViewer(jjson);
         });
 </script>
 
