@@ -4,7 +4,7 @@
   <title><![CDATA[Shridhar Deshmukh]]></title>
   <link href="http://shridhad.github.io/atom.xml" rel="self"/>
   <link href="http://shridhad.github.io/"/>
-  <updated>2015-04-11T13:55:30+05:30</updated>
+  <updated>2015-04-11T14:08:41+05:30</updated>
   <id>http://shridhad.github.io/</id>
   <author>
     <name><![CDATA[Shridhar Deshmukh]]></name>
@@ -707,6 +707,15 @@ If the first argument passed to <code>.call()/.apply()</code> is <em>null</em> o
 <li>Include both in your html page.</li>
 <li>Now call jJsonViewer on any element and pass it a json data <code>$(element).jJsonViewer(json)</code></li>
 </ul>
+
+
+<figure class='code html'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;/plugins/jjsonviewer/css/jjsonviewer.css&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span> <span class="na">src=</span><span class="s">&quot;/libs/jquery/1.9.1/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span> <span class="na">src=</span><span class="s">&#39;/plugins/jjsonviewer/js/jjsonviewer.js&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h3>Demo -</h3>
